@@ -33,6 +33,15 @@ t_btree_node	*delete_node(t_btree_node *node)
 	return (NULL);
 }
 
+void	clear_tree(t_btree_node *root)
+{
+	if (root == NULL)
+		return ;
+	clear_tree(root->left_child);
+	clear_tree(root->right_child);
+	delete_node(root);
+}
+
 t_btree_node	*link_left_child(t_btree_node *parent, t_btree_node *child)
 {
 	if (parent == NULL)
