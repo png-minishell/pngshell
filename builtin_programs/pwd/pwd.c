@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mingylee <mingylee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: mingylee <mingylee@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 15:17:53 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/15 15:46:05 by mingylee         ###   ########.fr       */
+/*   Created: 2022/08/16 14:40:11 by mingylee          #+#    #+#             */
+/*   Updated: 2022/08/16 14:50:34 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 
-void	environment(char **envp)
+int	main(int argc, char **argv)
 {
-	int	idx_envp;
+	char	buf[1024];
 
-	idx_envp = 0;
-	while(envp[idx_envp])
-	{
-		printf("%s\n", envp[idx_envp]);
-		idx_envp++;
-	}
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-
-	(void)argc;
-	(void)argv;
-
-	readline();
+	printf("%s\n", getcwd(buf, 1024));
+	return (0);
 }
