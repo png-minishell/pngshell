@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   binary_tree.c                                      :+:      :+:    :+:   */
+/*   bst_create_node.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 13:39:00 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/17 14:51:19 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/17 15:25:11 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/17 15:25:52 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "binary_tree.h"
 #include "error_control_functions.h"
 
@@ -24,36 +23,4 @@ t_btree_node	*create_node(void *content)
 	new_node->right_child = NULL;
 	new_node->content = content;
 	return (new_node);
-}
-
-t_btree_node	*delete_node(t_btree_node *node)
-{
-	free(node->content);
-	free(node);
-	return (NULL);
-}
-
-void	clear_tree(t_btree_node *root)
-{
-	if (root == NULL)
-		return ;
-	clear_tree(root->left_child);
-	clear_tree(root->right_child);
-	delete_node(root);
-}
-
-t_btree_node	*link_left_child(t_btree_node *parent, t_btree_node *child)
-{
-	if (parent == NULL)
-		return (NULL);
-	parent->left_child = child;
-	return (parent);
-}
-
-t_btree_node	*link_right_child(t_btree_node *parent, t_btree_node *child)
-{
-	if (parent == NULL)
-		return (NULL);
-	parent->right_child = child;
-	return (parent);
 }
