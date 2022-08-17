@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:04:12 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/17 14:51:00 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/17 14:54:37 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_status	tokenize_string(const char *str, t_list **token_list)
 		/* FIX !!
 		if (status == ST_ERROR)
 			invalid_token_error();
-
 		*/
 		start_index += (status == ST_DOUBLE_QUOTE || status == ST_SINGLE_QUOTE);
 		current_index = get_word_end_index(str, start_index, status);
