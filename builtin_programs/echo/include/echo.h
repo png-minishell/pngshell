@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   echo.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 14:50:56 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/15 15:18:12 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/17 14:51:54 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ECHO_H
-#define ECHO_H
+# define ECHO_H
 
 typedef int	t_bool;
 # define TRUE 1
 # define FALSE 0
 
-typedef enum	e_status
+typedef enum e_status
 {
 	SUCCESS = 0,
 	FAILED = -1
 }	t_status;
 
-typedef enum	e_option
+typedef enum e_option
 {
 	DEFAULT = 0,
 	N_MODE = 1,
