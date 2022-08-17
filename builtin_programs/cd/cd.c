@@ -6,36 +6,37 @@
 /*   By: mingylee <mingylee@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:27:32 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/16 20:44:10 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/17 15:52:11 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <errno.h>
+#include <unistd.h>
 #include <dirent.h>
+#include <readline/readline.h>
 
-/*
-void	passed_double_dot(argv[1])
+int	change_directory(char *input)
 {
-
+	DIR				*dir;
+	struct dirent	*file;
+	char			now_dir[1024];
+	
+	getcwd(now_dir, 1024);
+	if ((dir = opendir(now_dir)) == 0)
+		return (errno);
+	if (!chdir(input))
+		return (errno);
+	return (0);
 }
-*/
 
 int	main(int argc, char **argv)
 {
-	DIR				*my_dir;
-	struct dirent	*file;
-	char			home[1024];
+	char			*input;
 
-	my_dir = 0;
-	if ((my_dir = opendir("/Users/mingylee/42seoul")) == 0)
+	while (1)
 	{
-		printf("failed...\n");
-		return (-1);
+		input = readline(0);
+		change_directory(input);
 	}
-	while ((file = readdir(my_dir)) != 0)
-		printf("%s\n", file->d_name);
-	closedir(my_dir);
 	return (0);
 }
