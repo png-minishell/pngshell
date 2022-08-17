@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 23:16:22 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/17 15:01:31 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/17 20:13:25 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # define SYMBOLS "$()<>|&\'\"\\*"
 
 /* Main lexer functions */
-t_tokenized_string	*lexer(const char *str);
+t_token				*lexer(const char *str);
 t_status			tokenize_string(const char *str, t_list **token_list);
 
 /* LEXER UTILS */
-t_tokenized_string	*lst_to_arr(t_list *head);
+t_token				*lst_to_arr(t_list *head);
 size_t				get_word_end_index(\
 						const char *str,
 						const size_t start_index,
@@ -33,7 +33,7 @@ t_token_status		get_status(\
 						const char *str,
 						const size_t index);
 t_token_kind		get_token_kind(const t_token_status status);
-t_tokenized_string	*get_new_token(char *str, const t_token_status status);
+t_token				*get_new_token(char *str, const t_token_status status);
 
 /* index skip functions */
 size_t				skip_space(const char *str, size_t start_index);

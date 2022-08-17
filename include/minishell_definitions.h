@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:28:59 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/17 17:34:34 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/17 22:01:17 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,32 @@ typedef int t_status;
 # define TRUE 1
 typedef int t_bool;
 
+typedef enum e_token_type
+{
+	TYPE_WORD = 0,
+	TYPE_CMD = 1,
+	TYPE_REDIRECT = 2,
+	TYPE_PIPE = 5,
+	TYPE_ERROR = 127
+}	t_token_type;
+
 typedef enum e_token_kind
 {
-	TK_ARG = 0,
-	TK_ARG_DOUBLE_QUOTE = 0,
-	TK_FILE_PATH = 1,
-	TK_CMD = 1,
-	TK_LESS = 2,
-	TK_GREATER = 2,
-	TK_DOUBLE_LESS = 2,
-	TK_DOUBLE_GREATER = 2,
-	TK_PIPE = 5,
-	TK_ERROR = -1,
-	TK_ARR_END = -128,
+	TK_WORD = 0,
+	TK_WORD_DOUBLE_QUOTE = 1,
+	TK_CMD = 2,
+	TK_LESS = 3,
+	TK_GREATER = 4,
+	TK_DOUBLE_LESS = 5,
+	TK_DOUBLE_GREATER = 6,
+	TK_PIPE = 7,
+	TK_ERROR = 10,
+	TK_ARR_END = 11,
 }	t_token_kind;
 
 typedef enum e_token_status
 {
+	ST_END = 126,
 	ST_START,
 	ST_CMD,
 	ST_ARG,
@@ -55,14 +64,14 @@ typedef enum e_token_status
 	ST_BRACE,
 	ST_FILE_PATH,
 	ST_EOF,
-	ST_ERROR = -1
+	ST_ERROR = 127
 }	t_token_status;
 
-typedef struct s_tokenized_string
+typedef struct s_token
 {
 	char			*str;
 	t_token_kind	kind;
-}	t_tokenized_string;
+}	t_token;
 
 typedef struct s_cmd
 {

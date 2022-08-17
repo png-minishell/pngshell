@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:04:12 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/17 14:54:37 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/17 20:46:52 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static t_bool	is_double_operator(t_token_status status)
 	return (status == ST_DOUBLE_LESS || status == ST_DOUBLE_GREATER);
 }
 
-t_tokenized_string	*lexer(const char *str)
+t_token	*lexer(const char *str)
 {
-	t_tokenized_string	*result;
-	t_list				*token_list;
+	t_token	*result;
+	t_list	*token_list;
 
 	token_list = NULL;
 	tokenize_string(str, &token_list);
@@ -48,10 +48,6 @@ t_status	tokenize_string(const char *str, t_list **token_list)
 		if (str[start_index] == '\0')
 			break ;
 		status = get_status(status, str, start_index);
-		/* FIX !!
-		if (status == ST_ERROR)
-			invalid_token_error();
-		*/
 		start_index += (status == ST_DOUBLE_QUOTE || status == ST_SINGLE_QUOTE);
 		current_index = get_word_end_index(str, start_index, status);
 		word = ft_substr(str, start_index, current_index - start_index);
@@ -64,15 +60,3 @@ t_status	tokenize_string(const char *str, t_list **token_list)
 	return (SUCCESS);
 }
 
-int main(void)
-{
-	t_tokenized_string	*result;
-	size_t				index = 0;
-
-	result = lexer("cmd1 arg1 < file1 | cmd2 arg1 arg2 >> file2 | cmd3 >> file3 > filetest4 | cmd4 \"arg1 32413 43\"");
-	while (result[index].kind != TK_ARR_END)
-	{
-		printf("token : %s, kind : %c\n", result[index].str, result[index].kind);
-		++index;
-	}
-}
