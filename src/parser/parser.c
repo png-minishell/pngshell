@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:54:59 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/17 22:00:44 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/17 23:39:28 by parksungj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,16 @@ t_btree_node	*create_token_ast_from_tokens(t_token *tokens)
 			else
 			{
 				current_node = find_node_position(current_node, new_node);
+				current_node_token = (t_token *)current_node->content;
 				if (tokens[index].kind == TK_CMD)
 					bst_link_left_child(current_node, new_node);
+				else if (cmp_kind(*current_node_token, tokens[index]) > 0)
+				{
+					bst_link_left_child(new_node, current_node->right_child);
+					bst_link_right_child(current_node, new_node);
+				}
 				else
-					bst_insert_node(current_node, new_node);
+					bst_insert_node_left(current_node, new_node);
 			}
 		}
 		current_node = new_node;
@@ -119,6 +125,34 @@ t_btree_node	*parser(const char *str)
 	return (ast_root);
 }
 
+const char	*token_str(t_token_kind kind)
+{
+	switch ((int)kind)
+	{
+		case TK_WORD:
+			return ("WORD");
+		case TK_WORD_DOUBLE_QUOTE:
+			return ("DQ_WORD");
+		case TK_CMD:
+			return ("CMD");
+		case TK_LESS:
+			return ("<");
+		case TK_GREATER:
+			return (">");
+		case TK_DOUBLE_LESS:
+			return ("<<");
+		case TK_DOUBLE_GREATER:
+			return (">>");
+		case TK_PIPE:
+			return ("PIPE");
+		case TK_ARR_END:
+			return ("END");
+		default :
+			return ("ERR");
+
+	}
+}
+
 int	x = 0;
 
 void	print_tree(t_btree_node *root, int parent_num, char *s)
@@ -126,8 +160,8 @@ void	print_tree(t_btree_node *root, int parent_num, char *s)
 	if (root == NULL)
 		return ;
 	t_token	*token = root->content;
-	int	index = ++x;
-	printf("index : %d, string : %s, kind : %d parent %d %s\n", index, token->str, token->kind, parent_num, s);
+	int	index = x++;
+	printf("index : %d, string : %s, kind : %s parent %d %s\n", index, token->str, token_str(token->kind), parent_num, s);
 	print_tree(root->left_child, index, "L");
 	print_tree(root->right_child, index, "R");
 }
@@ -137,7 +171,7 @@ int main(void)
 	t_btree_node	*ast;
 	t_token			*tokens;
 	//const char		*tc = "< infile1 cmd1 arg1 | cmd2 > outfile";
-	const char		*test_code = "< infile1 << \"EOF ABC\" cmd1 cmd1_arg < file1 | <infile2 cmd2 cmd2_arg1 cmd2_arg2 <infile3 >> file2 | cmd3 >> file3 > filetest4 | cmd4 \"cmd4_arg1 32413 43\"";
+	const char		*test_code = "< infile1 << \"EOF ABC\" cmd1 cmd1_arg < file1 | <infile2 cmd2 cmd2_arg1 cmd2_arg2 <infile3 >> file2 | cmd3 cmd3_arg>> file3 > filetest3 | cmd4 \"cmd4_arg1 32413 43\"";
 	size_t			index = 0;
 
 	printf("==== LEXER TEST ====\n");
