@@ -6,7 +6,7 @@
 /*   By: parksungjun <sungjpar@student.42seoul      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 23:17:40 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/16 01:09:54 by parksungj        ###   ########.fr       */
+/*   Updated: 2022/08/17 14:45:58 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,25 @@ size_t	skip_word(const char *str, size_t start_index)
 size_t	skip_until_quote(\
 	const char *str, const size_t start_index, const t_token_status status)
 {
-	return (skip_word(str, start_index));
+	char	quote;
+	size_t	index;
+
+	if (status == ST_DOUBLE_QUOTE)
+		quote = '\"';
+	else if (status == ST_SINGLE_QUOTE)
+		quote = '\'';
+	index = start_index;
+	while (str[index] && str[index] != quote)
+	{
+		++index;
+	}
+	return (index);
 }
 
 size_t	get_word_end_index(\
 		const char *str, const size_t start_index, const t_token_status status)
 {
-	if (status != ST_DOUBLE_QUOTE || status != ST_SINGLE_QUOTE)
+	if (status != ST_DOUBLE_QUOTE && status != ST_SINGLE_QUOTE)
 		return (skip_word(str, start_index));
 	else
 		return (skip_until_quote(str, start_index, status));

@@ -6,7 +6,7 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/15 15:26:50 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/17 14:41:01 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,16 @@ BUITIN_DIR = ./builtin_programs
 
 ECHO_DIR = $(BUITIN_DIR)/echo/
 
-LIB_FLAG = -L $(LFT_DIR) -ft
+LIB_FLAG = -L $(LFT_DIR) -lft
 
 INC_FLAG = -I$(INC_DIR)\
 		   -I$(LFT_DIR)/include\
 
 SRC_FILES = $(addprefix $(SRC_DIR),\
+			error_control_functions/e_malloc.c\
+			parser/index_skip_functions.c\
+			parser/lexer.c\
+			parser/lexer_utils.c\
 )
 
 OBJS = ${SRC_FILES:.c=.o}

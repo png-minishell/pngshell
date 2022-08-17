@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   binary_tree.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/17 14:53:13 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/17 14:53:20 by sungjpar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef BINARY_TREE_H
-#define BINARY_TREE_H
+# define BINARY_TREE_H
 
-typedef struct	s_btree_node
+typedef struct s_btree_node
 {
 	struct s_btree_node	*parent;
 	struct s_btree_node	*left_child;
 	struct s_btree_node	*right_child;
-	void			*content;
+	void				*content;
 }	t_btree_node;
 
 t_btree_node	*create_node(void *content);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binary_tree.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 13:39:00 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/15 14:47:51 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/17 14:51:19 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 t_btree_node	*create_node(void *content)
 {
 	t_btree_node	*new_node;
-	
+
 	new_node = e_malloc(sizeof(t_btree_node));
 	new_node->parent = NULL;
 	new_node->left_child = NULL;

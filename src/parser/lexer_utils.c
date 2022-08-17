@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parksungjun <sungjpar@student.42seoul      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:23:46 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/16 01:07:44 by parksungj        ###   ########.fr       */
+/*   Updated: 2022/08/17 14:49:28 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ t_tokenized_string *lst_to_arr(t_list *head)
 		node = node->next;
 		++idx;
 	}
-	arr[idx].kind = TK_ARR_END;;
+	arr[idx].kind = TK_ARR_END;
 	return (arr);
 }
 
 t_token_status	get_status(\
 		const t_token_status prev_status, const char *str, const size_t index)
 {
-	if ((prev_status == ST_SINGLE_QUOTE && ft_strncmp("'", str + index, 1) != 0)
-		||(prev_status == ST_DOUBLE_QUOTE && ft_strncmp("\'", str + index, 1) != 0))
+	if ((prev_status == ST_SINGLE_QUOTE && ft_strncmp("'", str + index, 1))
+		|| (prev_status == ST_DOUBLE_QUOTE && ft_strncmp("\'", str + index, 1)))
 		return (ST_ERROR);
 	if (ft_strncmp("<<", str + index, 2) == 0)
 		return (ST_DOUBLE_LESS);
@@ -79,12 +79,14 @@ t_token_kind	get_token_kind(const t_token_status status)
 		return (TK_DOUBLE_GREATER);
 	if (status == ST_PIPE)
 		return (TK_PIPE);
-	if (status == ST_DOUBLE_QUOTE || status == ST_SINGLE_QUOTE)
+	if (status == ST_SINGLE_QUOTE)
 		return (TK_ARG);
 	if (status == ST_CMD)
 		return (TK_CMD);
 	if (status == ST_FILE_PATH)
 		return (TK_FILE_PATH);
+	if (status == ST_DOUBLE_QUOTE)
+		return (TK_ARG_DOUBLE_QUOTE);
 	if (status == ST_ARG)
 		return (TK_ARG);
 	return (TK_ERROR);
