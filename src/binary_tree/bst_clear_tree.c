@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.h                                             :+:      :+:    :+:   */
+/*   bst_clear_tree.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 14:50:56 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/17 14:51:54 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/17 15:26:04 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/17 20:20:44 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ECHO_H
-# define ECHO_H
+#include <stddef.h>
+#include "binary_tree.h"
 
-typedef int	t_bool;
-# define TRUE 1
-# define FALSE 0
-
-typedef enum e_status
+void	bst_clear_tree(t_btree_node *root)
 {
-	SUCCESS = 0,
-	FAILED = -1
-}	t_status;
-
-typedef enum e_option
-{
-	DEFAULT = 0,
-	N_MODE = 1,
-}	t_option;
-
-t_status	run_program(int argc, char *argv[]);
-t_option	get_option(int argc, char *argv[]);
-t_status	echo_string(char *strings[], t_option mode);
-
-#endif
+	if (root == NULL)
+		return ;
+	bst_clear_tree(root->left_child);
+	bst_clear_tree(root->right_child);
+	bst_delete_node(root);
+}
