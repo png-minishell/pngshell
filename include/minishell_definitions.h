@@ -82,5 +82,4 @@ typedef struct s_cmd
 char	*get_value(const char *key, char **envp);
 char	*get_key(const char *str);
 char	*env_substituter(const char *str, char **envp);
-
 #endif

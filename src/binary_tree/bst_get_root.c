@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_control_functions.h                          :+:      :+:    :+:   */
+/*   bst_get_root.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 14:53:07 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/17 14:53:08 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/17 17:27:21 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/17 17:28:12 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_CONTROL_FUNCTIONS_H
-# define ERROR_CONTROL_FUNCTIONS_H
+#include <stddef.h>
+#include "binary_tree.h"
 
-# include <stddef.h>
-
-void	*e_malloc(size_t malloc_size);
-
-#endif
+t_btree_node	*bst_get_root(t_btree_node *node)
+{
+	if (node == NULL)
+		return (NULL);
+	while (node->parent)
+	{
+		node = node->parent;
+	}
+	return (node);
+}

@@ -6,7 +6,7 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/15 15:26:50 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/18 14:51:40 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,26 @@ BUITIN_DIR = ./builtin_programs
 
 ECHO_DIR = $(BUITIN_DIR)/echo/
 
-LIB_FLAG = -L $(LFT_DIR) -ft
+LIB_FLAG = -L $(LFT_DIR) -lft
 
 INC_FLAG = -I$(INC_DIR)\
 		   -I$(LFT_DIR)/include\
 
 SRC_FILES = $(addprefix $(SRC_DIR),\
+			binary_tree/bst_clear_tree.c\
+			binary_tree/bst_get_root.c\
+			binary_tree/bst_delete_node.c\
+			binary_tree/bst_create_node.c\
+			binary_tree/bst_insert_node.c\
+			binary_tree/bst_link_right_child.c\
+			binary_tree/bst_link_left_child.c\
+			error_control_functions/e_malloc.c\
+			parser/index_skip_functions.c\
+			parser/lexer.c\
+			parser/lexer_utils.c\
+			parser/parser.c\
+			parser/parser_utils.c\
+			parser/parser_tester.c\
 )
 
 OBJS = ${SRC_FILES:.c=.o}
