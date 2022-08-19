@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/18 19:40:23 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/19 14:23:44 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,5 @@ char	*get_value(const char *key, char **envp, char **set);
 char	*get_key(const char *str);
 char	*env_substituter(const char *str, char **envp, char **set);
 void	free_strings_array(char **arr);
+void	heredoc(const int fd, const char *limiter);
 #endif
