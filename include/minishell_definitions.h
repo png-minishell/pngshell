@@ -81,11 +81,11 @@ typedef struct s_cmd
 	char	**arguments;
 }	t_cmd;
 
-char	*get_value(const char *key, char **envp);
+char	*get_value(const char *key, char **envp, char **set);
 char	*get_key(const char *str);
 char	*env_substituter(const char *str, char **envp);
 
-/* FILE DEFINE */
+/* FILE TYPE DEFINE */
 # define TYPE_FIFO		0
 # define TYPE_CHR		1
 # define TYPE_DIRECTORY	2
@@ -93,5 +93,4 @@ char	*env_substituter(const char *str, char **envp);
 # define TYPE_REGULAR	4
 # define TYPE_LINK		5
 # define TYPE_SOCKET	6
-
 #endif
