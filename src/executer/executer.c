@@ -6,13 +6,14 @@
 /*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:08:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/19 19:40:03 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/19 20:01:20 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
 #include <errno.h>
+#include "minishell_definitions.h"
+#include "error_control_functions.h"
 #include "executer.h"
 
 t_status	do_command(t_btree_node *const left_leaf)
@@ -26,7 +27,8 @@ t_status	do_command(t_btree_node *const left_leaf)
 		do_token_purpose(node, &cmd);
 		node = node->parent;
 	}
-	execve(cmd.cmd_string, cmd.arguments, NULL); // NULL -> envp is global envp...
+	execve(cmd.cmd_string, cmd.arguments, NULL); // NULL -> envp is global envp..
+	free_strings(cmd.arguments);
 	unlink(HEREDOC_FILE_NAME);
 	return (SUCCESS);
 }
@@ -45,7 +47,7 @@ t_status	executer(t_btree_node *ast)
 	while (index < number_of_process)
 	{
 		// set pipe...
-		pid = fork();
+		pid = e_fork();
 		if (pid == 0)
 		{
 			do_command(left_leaf);
