@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/19 14:23:44 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/19 17:26:14 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 # define FAILED -1
 # define SUCCESS 0
-typedef int t_status;
+
+typedef int	t_status;
 
 # define FALSE 0
 # define TRUE 1
-typedef int t_bool;
+
+typedef int	t_bool;
 
 typedef enum e_token_type
 {
@@ -81,7 +83,14 @@ typedef struct s_cmd
 
 char	*get_value(const char *key, char **envp, char **set);
 char	*get_key(const char *str);
-char	*env_substituter(const char *str, char **envp, char **set);
-void	free_strings_array(char **arr);
-void	heredoc(const int fd, const char *limiter);
+char	*env_substituter(const char *str, char **envp);
+
+/* FILE TYPE DEFINE */
+# define TYPE_FIFO		0
+# define TYPE_CHR		1
+# define TYPE_DIRECTORY	2
+# define TYPE_BLOCK		3
+# define TYPE_REGULAR	4
+# define TYPE_LINK		5
+# define TYPE_SOCKET	6
 #endif
