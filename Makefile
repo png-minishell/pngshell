@@ -6,7 +6,7 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/19 14:28:40 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/19 15:32:22 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ BUITIN_DIR = ./builtin_programs
 
 ECHO_DIR = $(BUITIN_DIR)/echo/
 
-LIB_FLAG = -L $(LFT_DIR) -lft
+LIB_FLAG = -L $(LFT_DIR) -lft\
+		   -lreadline
 
 INC_FLAG = -I$(INC_DIR)\
 		   -I$(LFT_DIR)/include\
