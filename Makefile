@@ -6,7 +6,7 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/18 14:51:40 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/19 14:28:40 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,9 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			parser/parser.c\
 			parser/parser_utils.c\
 			parser/parser_tester.c\
+			env_substituter/env_substituter.c\
+			env_substituter/env_substituter_utils.c\
+			heredoc/heredoc.c\
 )
 
 OBJS = ${SRC_FILES:.c=.o}
