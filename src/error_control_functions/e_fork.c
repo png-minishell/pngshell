@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_malloc.c                                         :+:      :+:    :+:   */
+/*   e_fork.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 13:38:52 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/19 19:50:45 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/19 19:45:21 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/19 19:50:41 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <errno.h>
+#include <unistd.h>
 #include "error_control_functions.h"
+#include "minishell_definitions.h"
 
-void	*e_malloc(size_t malloc_size)
+pid_t	e_fork(void)
 {
-	void	*ptr;
+	pid_t	pid;
 
-	ptr = malloc(malloc_size);
-	if (ptr == NULL)
+	pid = fork();
+	if (pid == FAILED)
 	{
 		perror(NULL);
 		exit(errno);
 	}
-	return (ptr);
+	return (pid);
 }

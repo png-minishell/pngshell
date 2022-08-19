@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_malloc.c                                         :+:      :+:    :+:   */
+/*   e_open.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 13:38:52 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/19 19:50:45 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/19 19:42:00 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/19 19:50:48 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
+#include <fcntl.h>
 #include "error_control_functions.h"
+#include "minishell_definitions.h"
 
-void	*e_malloc(size_t malloc_size)
+int	e_open(const char *path, int flag, int mode)
 {
-	void	*ptr;
+	int	fd;
 
-	ptr = malloc(malloc_size);
-	if (ptr == NULL)
+	fd = open(path, flag, mode);
+	if (fd == FAILED)
 	{
 		perror(NULL);
 		exit(errno);
 	}
-	return (ptr);
+	return (fd);
 }
