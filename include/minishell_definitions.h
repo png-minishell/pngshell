@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/19 17:26:14 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/20 23:35:58 by parksungj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,12 @@ typedef struct s_cmd
 	char	**arguments;
 }	t_cmd;
 
+extern char	**envp;
+extern char	**set;
+
 char	*get_value(const char *key, char **envp, char **set);
 char	*get_key(const char *str);
-char	*env_substituter(const char *str, char **envp);
+char	*env_substituter(const char *str, char **envp, char **set);
 
 /* FILE TYPE DEFINE */
 # define TYPE_FIFO		0
