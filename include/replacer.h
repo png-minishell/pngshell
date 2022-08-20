@@ -6,7 +6,7 @@
 /*   By: parksungjun <sungjpar@student.42seoul      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:59:16 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/20 20:51:37 by parksungj        ###   ########.fr       */
+/*   Updated: 2022/08/21 00:14:40 by parksungj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	env_replacer(\
 			size_t *idx_str,
 			size_t *idx_result);
 size_t	get_replaced_string_size(const char *str);
+char	*replacer(const char *str);
 
 #endif

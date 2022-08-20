@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/20 23:35:58 by parksungj        ###   ########.fr       */
+/*   Updated: 2022/08/21 00:14:38 by parksungj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ extern char	**set;
 char	*get_value(const char *key, char **envp, char **set);
 char	*get_key(const char *str);
 char	*env_substituter(const char *str, char **envp, char **set);
+char	*replacer(const char *str);
 
 /* FILE TYPE DEFINE */
 # define TYPE_FIFO		0
