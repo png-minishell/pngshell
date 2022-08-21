@@ -6,12 +6,14 @@
 /*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/19 17:26:14 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:08:51 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_DEFINITIONS_H
 # define MINISHELL_DEFINITIONS_H
+
+# include <sys/stat.h>
 
 # define FAILED -1
 # define SUCCESS 0
@@ -84,6 +86,9 @@ typedef struct s_cmd
 char	*get_value(const char *key, char **envp, char **set);
 char	*get_key(const char *str);
 char	*env_substituter(const char *str, char **envp);
+int		what_is_this_file(char *file, struct stat *file_buf);
+int		check_permission(char *absolute_path);
+char	*find_excute_file_path(char *command_name, char **envp);
 
 /* FILE TYPE DEFINE */
 # define TYPE_FIFO		0
