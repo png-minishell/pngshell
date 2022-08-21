@@ -13,6 +13,8 @@
 #ifndef MINISHELL_DEFINITIONS_H
 # define MINISHELL_DEFINITIONS_H
 
+# include "binary_tree.h"
+
 # define FAILED -1
 # define SUCCESS 0
 
@@ -81,12 +83,15 @@ typedef struct s_cmd
 	char	**arguments;
 }	t_cmd;
 
-char	*get_value(const char *key, char **envp, char **set);
-char	*get_key(const char *str);
-char	*env_substituter(const char *str, char **envp);
-void	heredoc(const int fd, const char *limiter);
+extern char	**envp;
+extern char	**set;
 
-/* HEREDOC FILE DEFINE */
+char			*get_value(const char *key, char **envp, char **set);
+char			*get_key(const char *str);
+char			*env_substituter(const char *str, char **envp, char **set);
+char			*replacer(const char *str);
+t_btree_node	*parser(const char *str);
+void	heredoc(const int fd, const char *limiter);
 # define HEREDOC_FILE_NAME ".heredoc.tmp"
 
 /* FILE TYPE DEFINE */

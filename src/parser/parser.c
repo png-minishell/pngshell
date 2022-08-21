@@ -6,11 +6,12 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:54:59 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/18 14:51:13 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/21 14:48:56 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include <stdlib.h>
+#include "minishell_definitions.h"
 #include "binary_tree.h"
 #include "parser.h"
 #include "lexer.h"
@@ -34,7 +35,6 @@ static void	insert_node(t_btree_node *current_node, t_btree_node *new_node)
 
 }
 
-/* CREATE AST FROM TOKENS*/
 t_btree_node	*create_token_ast_from_tokens(t_token *tokens)
 {
 	t_btree_node	*current_node;
@@ -68,9 +68,13 @@ t_btree_node	*parser(const char *str)
 {
 	t_token			*tokens;
 	t_btree_node	*ast_root;
+	char			*replaced_str;
 
-	tokens = lexer(str);
+	replaced_str = replacer(str);
+	tokens = lexer(replaced_str);
 	ast_root = create_token_ast_from_tokens(tokens);
+	free(tokens);
+	free(replaced_str);
 	return (ast_root);
 }
 
