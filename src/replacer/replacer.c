@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 14:01:53 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 14:26:27 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/21 16:01:34 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*replacer(const char *str)
 	return (result);
 }
 
-/* test code */
+/* test code 
 #include <stdio.h>
 char	**envp;
 char	**set;
@@ -78,3 +78,4 @@ int	main(void)
 	free(res);
 	system("leaks a.out > test.txt; cat test.txt; rm test.txt");
 }
+*/

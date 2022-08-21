@@ -6,7 +6,7 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/19 15:32:22 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/21 20:23:37 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,16 +40,35 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			binary_tree/bst_insert_node.c\
 			binary_tree/bst_link_right_child.c\
 			binary_tree/bst_link_left_child.c\
+			error_control_functions/e_close.c\
+			error_control_functions/e_dup2.c\
+			error_control_functions/e_fork.c\
 			error_control_functions/e_malloc.c\
+			error_control_functions/e_open.c\
+			error_control_functions/e_pipe.c\
+			executer/executer.c\
+			executer/executer_node_utils.c\
+			executer/executer_token_funcs.c\
+			executer/executer_utils.c\
+			executer/pipe_utils.c\
+			executer/run_heredoc.c\
+			heredoc/heredoc.c\
 			parser/index_skip_functions.c\
 			parser/lexer.c\
 			parser/lexer_utils.c\
 			parser/parser.c\
 			parser/parser_utils.c\
-			parser/parser_tester.c\
+			replacer/back_slash_replacer.c\
+			replacer/double_quote_replacer.c\
+			replacer/env_replacer.c\
+			replacer/get_replaced_string_size.c\
+			replacer/replace_backslash_and_copy_string.c\
+			replacer/replacer.c\
+			replacer/single_quote_replacer.c\
 			env_substituter/env_substituter.c\
 			env_substituter/env_substituter_utils.c\
-			heredoc/heredoc.c\
+			utils/stat_check.c\
+			main.c\
 )
 
 OBJS = ${SRC_FILES:.c=.o}
@@ -71,7 +90,7 @@ clean	:
 	$(MAKE) -C $(LFT_DIR) clean
 	$(MAKE) -C $(ECHO_DIR) clean
 
-fclean	: 
+fclean	:
 	rm -f $(NAME)
 	$(MAKE) clean
 	$(MAKE) -C $(LFT_DIR) fclean

@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   executer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:19:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/19 19:38:47 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/21 20:24:29 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include "binary_tree.h"
@@ -38,8 +39,8 @@ static t_cmd	get_cmd(t_btree_node *const cmd_node)
 	size_t			index;
 	t_btree_node	*node;
 
-	argv = e_malloc(sizeof(char *) * (argv_size + 1));
-	index = 0;
+	argv = e_malloc(sizeof(char *) * (argv_size + 2));
+	index = 1;
 	node = cmd_node->right_child;
 	while (node)
 	{
@@ -48,8 +49,9 @@ static t_cmd	get_cmd(t_btree_node *const cmd_node)
 		++index;
 	}
 	argv[index] = NULL;
-	cmd.cmd_string = ((t_token *)(cmd_node->content))->str;
+	cmd.cmd_string = ft_strdup(((t_token *)(cmd_node->content))->str);
 	cmd.arguments = argv;
+	argv[0] = ft_strdup(cmd.cmd_string);
 	return (cmd);
 }
 
@@ -76,18 +78,20 @@ t_token_kind	get_node_token_kind(t_btree_node *node)
 
 t_status	do_token_purpose(t_btree_node *node, t_cmd *cmd)
 {
-	const t_token		*token = node->content;
+	const t_token		*r_token = node->right_child->content;
 	const t_token_kind	kind = get_node_token_kind(node);
 
 	if (kind == TK_CMD)
 		*cmd = get_cmd(node);
 	else if (kind == TK_LESS)
-		do_infile_redirection(token->str);
+		do_infile_redirection(r_token->str);
 	else if (kind == TK_GREATER)
-		do_outfile_redirection(token->str, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		do_outfile_redirection(\
+			r_token->str, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	else if (kind == TK_DOUBLE_LESS)
-		do_heredoc_redirection(node);
+		do_heredoc_redirection();
 	else if (kind == TK_DOUBLE_GREATER)
-		do_outfile_redirection(token->str, O_WRONLY | O_APPEND | O_CREAT, 0644);
-	return (FAILED);
+		do_outfile_redirection(\
+			r_token->str, O_WRONLY | O_APPEND | O_CREAT, 0644);
+	return (SUCCESS);
 }

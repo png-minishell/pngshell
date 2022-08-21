@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:19:29 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 15:44:32 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/21 20:22:49 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ t_btree_node	*get_next_root(t_btree_node *const left_leaf);
 
 t_status		do_infile_redirection(const char *path);
 t_status		do_outfile_redirection(const char *path, int flag, int mode);
-t_status		do_heredoc_redirection(t_btree_node *const node);
+t_status		do_heredoc_redirection(void);
 #endif

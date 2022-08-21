@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_fork.c                                           :+:      :+:    :+:   */
+/*   run_heredoc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/19 19:45:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 19:45:20 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/21 20:14:22 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/21 20:21:47 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <unistd.h>
-#include "error_control_functions.h"
 #include "minishell_definitions.h"
+#include "executer.h"
 
-pid_t	e_fork(void)
+void	run_heredoc(t_btree_node *root)
 {
-	pid_t	pid;
+	t_token	*token;
 
-	pid = fork();
-	if (pid == FAILED)
+	if (root == NULL)
+		return ;
+	if (get_node_token_kind(root) == TK_DOUBLE_LESS)
 	{
-		perror(NULL);
-		exit(errno);
+		token = root->right_child->content;
+		heredoc(token->str);
 	}
-	return (pid);
+	run_heredoc(root->left_child);
+	run_heredoc(root->right_child);
 }
