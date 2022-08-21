@@ -6,7 +6,7 @@
 /*   By: parksungjun <sungjpar@student.42seoul      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:59:16 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/21 00:14:40 by parksungj        ###   ########.fr       */
+/*   Updated: 2022/08/21 14:16:03 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 # include <stddef.h>
 
-char	back_slash_replacer(const char *str, size_t *index);
+void	replace_backslash_and_copy_string(
+			const char *str,
+			char *res,
+			size_t *idx_res);
+char	replace_backslash(const char *str, size_t *index);
 void	single_quote_replacer(\
 			const char *str,
 			char *result, 

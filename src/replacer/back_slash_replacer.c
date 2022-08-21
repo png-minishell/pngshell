@@ -6,13 +6,13 @@
 /*   By: parksungjun <sungjpar@student.42seoul      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:04:56 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/20 23:26:51 by parksungj        ###   ########.fr       */
+/*   Updated: 2022/08/21 14:02:38 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "replacer.h"
 
-char	back_slash_replacer(const char *str, size_t *index)
+char	replace_backslash(const char *str, size_t *index)
 {
 	const char	next_char = *(str + 1);
 
