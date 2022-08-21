@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:20:38 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 20:34:18 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/21 21:07:00 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ int	main(int argc, char **argv, char **env)
 	}
 	envp = env;
 	set = env;
-	stdin_bak = dup(STDIN_FILENO);
-	stdout_bak = dup(STDOUT_FILENO);
-	char	*user_cmd;
-	user_cmd = readline("shell$");
-	t_btree_node *ast = parser(user_cmd);
-	run_heredoc(ast);
-	executer(ast);
+	while(1)
+	{
+		char	*user_cmd;
+		user_cmd = readline("shell$ ");
+		t_btree_node *ast = parser(user_cmd);
+		run_heredoc(ast);
+		executer(ast);
+	}
 }

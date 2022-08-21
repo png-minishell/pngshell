@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_node_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:20:40 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 19:33:00 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/21 21:31:38 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,3 @@ t_btree_node	*get_next_root(t_btree_node *const left_leaf)
 		node = node->parent;
 	return (node);
 }
-

@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:08:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 20:29:24 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/21 21:31:10 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	free_strings(char **strings)
 #include "libft.h"
 static char	*get_cmd_path(const char *str)
 {
+	ft_putendl_fd(ft_strdup(str), 2);
 	if (ft_strncmp(str, "cat", -1) == 0)
 		return (ft_strdup("/bin/cat"));
 	if (ft_strncmp(str, "echo", -1) == 0)
@@ -59,7 +60,7 @@ static t_status	do_command(t_btree_node *const left_leaf)
 	}
 	cmd_path = get_cmd_path(cmd.cmd_string);
 	if (cmd_path[0])
-		execve(cmd_path, cmd.arguments, NULL); // NULL -> envp is global envp..
+		execve(cmd_path, cmd.arguments, envp); // NULL -> envp is global envp..
 	free(cmd_path);
 	free_strings(cmd.arguments);
 	unlink(HEREDOC_FILE_NAME);
@@ -98,6 +99,7 @@ static void	wait_childs(pid_t *pid, size_t number_of_process)
 	index = 0;
 	while (index < number_of_process)
 		waitpid(pid[index++], NULL, 0);
+	usleep(300);
 }
 
 void	run_commands(\
@@ -121,7 +123,8 @@ void	run_commands(\
 			do_command(left_leaf);
 			exit(errno);
 		}
-		left_leaf = get_left_leaf(root->right_child);
+		if (root->right_child)
+			left_leaf = get_left_leaf(root->right_child);
 		root = get_next_root(root);
 		++index;
 	}
