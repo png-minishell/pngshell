@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_malloc.c                                         :+:      :+:    :+:   */
+/*   e_close.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 13:38:52 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/19 19:50:45 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/19 19:44:24 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/19 19:48:51 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
+#include <unistd.h>
+#include "minishell_definitions.h"
 #include "error_control_functions.h"
 
-void	*e_malloc(size_t malloc_size)
+t_status	e_close(const int fd)
 {
-	void	*ptr;
-
-	ptr = malloc(malloc_size);
-	if (ptr == NULL)
+	if (close(fd) == FAILED)
 	{
 		perror(NULL);
 		exit(errno);
 	}
-	return (ptr);
+	return (SUCCESS);
 }

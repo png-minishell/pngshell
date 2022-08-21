@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_malloc.c                                         :+:      :+:    :+:   */
+/*   e_pipe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 13:38:52 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/19 19:50:45 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/21 15:51:36 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/21 15:52:52 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <errno.h>
 #include "error_control_functions.h"
 
-void	*e_malloc(size_t malloc_size)
+t_status	e_pipe(int *fds)
 {
-	void	*ptr;
-
-	ptr = malloc(malloc_size);
-	if (ptr == NULL)
+	if (pipe(fds) == FAILED)
 	{
 		perror(NULL);
 		exit(errno);
 	}
-	return (ptr);
+	return (SUCCESS);
 }
