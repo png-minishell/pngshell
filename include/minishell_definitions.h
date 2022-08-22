@@ -13,6 +13,7 @@
 #ifndef MINISHELL_DEFINITIONS_H
 # define MINISHELL_DEFINITIONS_H
 
+# include <sys/stat.h>
 # include "binary_tree.h"
 
 # define FAILED -1
@@ -96,6 +97,9 @@ t_btree_node	*create_ast_tree_from_string(const char *str);
 void			heredoc(const char *limiter);
 void			run_heredoc(t_btree_node *ast);
 t_status		execute_commands_from_ast(t_btree_node *ast);
+int		what_is_this_file(char *file, struct stat *file_buf);
+int		check_permission(char *absolute_path);
+char	*find_excute_file_path(char *command_name, char **envp);
 
 # define HEREDOC_FILE_NAME ".heredoc.tmp"
 
