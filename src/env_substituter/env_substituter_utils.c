@@ -6,10 +6,11 @@
 /*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 19:38:29 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/18 19:39:34 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/21 16:02:05 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdlib.h>
 #include "libft.h"
 
@@ -23,7 +24,7 @@ void	free_strings_array(char **arr)
 		free(arr[index]);
 		++index;
 	}
-	free(arr[index]);
+	free(arr);
 	return ;
 }
 
@@ -51,7 +52,6 @@ static char	*find_key_and_get_value(const char *key, char **envp)
 
 char	*get_value(const char *key, char **envp, char **set)
 {
-	size_t	index;
 	char	*value;
 
 	value = find_key_and_get_value(key, envp);
@@ -68,7 +68,7 @@ char	*get_key(const char *str)
 	size_t	index;
 
 	index = 1;
-	while (!ft_isspace(str[index]) && str[index] != '$')
+	while (str[index] && !ft_isspace(str[index]) && str[index] != '$')
 	{
 		++index;
 	}

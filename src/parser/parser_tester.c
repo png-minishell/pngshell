@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 14:39:29 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/18 14:45:14 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/21 18:02:28 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,22 @@ void	print_tree(t_btree_node *root, int parent_num, char *s)
 	print_tree(root->right_child, index, "R");
 }
 
-int main(void)
+char **envp;
+char **set;
+
+int main(int argc, char **argv, char **env)
 {
 	t_btree_node	*ast;
 	t_token			*tokens;
-	const char		*tc2 = "< infile1 cmd1 arg1 | cmd2 > outfile | cmd3 | < infile2 > outfile2";
+	const char		*tc2 = "cat -e << Makefile | cat -e  | cat -e > outfile";
+	//const char		*tc2 = "< infile1 cmd1 arg1 | cmd2 > outfile | cmd3 | < infile2 > outfile2";
 	const char		*test_code = "< infile1 << \"EOF ABC\" cmd1 cmd1_arg < file1 | <infile2 cmd2 cmd2_arg1 cmd2_arg2 <infile3 >> file2 | cmd3 cmd3_arg>> file3 > filetest3 | cmd4 \"cmd4_arg1 32413 43\"";
 	size_t			index = 0;
 
+	envp = env;
+	set = env;
+	if (argc == 1)
+		printf("%s", argv[0]);
 	printf("==== LEXER TEST ====\n");
 	tokens = lexer(test_code);
 	while (tokens[index].kind != TK_ARR_END)

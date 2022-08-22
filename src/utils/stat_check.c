@@ -6,11 +6,12 @@
 /*   By: mingylee <mingylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:49:00 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/19 17:27:46 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/21 16:02:19 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/stat.h>
+#include <errno.h>
 #include "minishell_definitions.h"
 
 int	what_is_this_file(char *file, struct stat *file_buf)

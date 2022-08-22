@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 14:41:03 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/18 15:23:36 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/20 00:44:02 by parksungj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_token_type	get_token_type(t_token token)
 {
 	const t_token_kind	kind = token.kind;
 
-	if (kind == TK_WORD || kind == TK_WORD_DOUBLE_QUOTE)
+	if (kind == TK_WORD)
 		return (TYPE_WORD);
 	if (kind == TK_LESS || kind == TK_DOUBLE_LESS
 		|| kind == TK_GREATER || kind == TK_DOUBLE_GREATER)

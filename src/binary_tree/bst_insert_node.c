@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:04:14 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/17 23:32:40 by parksungj        ###   ########.fr       */
+/*   Updated: 2022/08/21 19:32:30 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_btree_node	*bst_insert_node_left(t_btree_node *target, t_btree_node *node)
 		else
 		 	return (NULL);
 		node->parent = parent;
+		target->parent = node;
 	}
 	node->left_child = target;
 	return (node);

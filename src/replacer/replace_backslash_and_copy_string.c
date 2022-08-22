@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_malloc.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
+
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 13:38:52 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 19:45:31 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/21 14:14:57 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/21 14:15:07 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include "error_control_functions.h"
+#include "replacer.h"
 
-void	*e_malloc(size_t malloc_size)
+void	replace_backslash_and_copy_string(\
+		const char *str,
+		char *res,
+		size_t *idx_res)
 {
-	void	*ptr;
+	size_t	idx_str;
 
-	ptr = malloc(malloc_size);
-	if (ptr == NULL)
+	idx_str = 0;
+	while (str[idx_str])
 	{
-		perror(NULL);
-		exit(errno);
+		if (str[idx_str] == '\\')
+			res[*idx_res] = replace_backslash(str + idx_str, &idx_str);
+		else
+			res[*idx_res] = str[idx_str];
+		++idx_str;
+		++(*idx_res);
 	}
-	return (ptr);
 }
