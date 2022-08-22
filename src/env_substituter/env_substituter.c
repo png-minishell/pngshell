@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_substituter.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 16:32:46 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 00:10:08 by parksungj        ###   ########.fr       */
+/*   Updated: 2022/08/22 21:07:05 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*env_substituter(const char *str, char **envp, char **set)
 			&& str[index + 1]
 			&& (!index || str[index - 1] != '\\'))
 		{
-			index += replace_env(str, result_string, &r_index);
+			index += replace_env(str + index, result_string, &r_index);
 		}
 		else
 			result_string[r_index++] = str[index];
@@ -83,21 +83,3 @@ char	*env_substituter(const char *str, char **envp, char **set)
 	result_string[r_index] = 0;
 	return (result_string);
 }
-
-/*
-#include <stdio.h>
-int	main(void)
-{
-	char *tc = "test1 '$HOME' \\$HOME $HOME";
-	char *env[] = {
-		"HOME=test",
-		NULL
-	};
-	char *set[] = {
-		"set=OO",
-		NULL
-	};
-	
-	printf("%s", env_substituter(tc, env, set));
-}
-*/

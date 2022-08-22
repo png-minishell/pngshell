@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:04:12 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/21 17:43:55 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:32:57 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_status	tokenize_string(const char *str, t_list **token_list)
 		if (str[start_index] == '\0')
 			break ;
 		status = get_status(status, str, start_index);
-		start_index += (status == ST_SINGLE_QUOTE);
+		start_index += (status == ST_SINGLE_QUOTE || status == ST_DOUBLE_QUOTE);
 		current_index = get_word_end_index(str, start_index, status);
 		word = ft_substr(str, start_index, current_index - start_index);
 		ft_lstadd_back(token_list, ft_lstnew(get_new_token(word, status)));

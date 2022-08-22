@@ -6,13 +6,13 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/22 16:07:19 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/22 21:34:19 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror# -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 
 NAME = minishell
 
@@ -52,12 +52,14 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			executer/executer_utils.c\
 			executer/pipe_utils.c\
 			executer/run_heredoc.c\
+			executer/run_commands.c\
 			heredoc/heredoc.c\
 			parser/index_skip_functions.c\
 			parser/lexer.c\
 			parser/lexer_utils.c\
 			parser/parser.c\
 			parser/parser_utils.c\
+			parser/merge_arguments_in_ast.c\
 			replacer/back_slash_replacer.c\
 			replacer/double_quote_replacer.c\
 			replacer/env_replacer.c\
@@ -68,6 +70,9 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			env_substituter/env_substituter.c\
 			env_substituter/env_substituter_utils.c\
 			utils/stat_check.c\
+			utils/find_execute_file_path.c\
+			utils/free_strings.c\
+			utils/free_token.c\
 			main.c\
 )
 

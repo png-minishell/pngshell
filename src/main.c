@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:20:38 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 16:10:13 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:33:51 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ int	main(int argc, char **argv, char **env)
 	while(1)
 	{
 		char	*user_cmd;
-		user_cmd = readline("shell$ ");
+		user_cmd = readline("\033[34m shell$ \033[0m");
 		t_btree_node *ast = create_ast_tree_from_string(user_cmd);
 		run_heredoc(ast);
 		execute_commands_from_ast(ast);
 		unlink(HEREDOC_FILE_NAME);
-		bst_clear_tree(ast);
+		bst_clear_tree(ast, free_token);
 		free(user_cmd);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:54:59 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 15:13:59 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:47:29 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	insert_node(t_btree_node *current_node, t_btree_node *new_node)
 	}
 	else
 		bst_insert_node_left(current_node, new_node);
-
 }
 
 t_btree_node	*create_token_ast_from_tokens(t_token *tokens)
@@ -74,8 +73,8 @@ t_btree_node	*create_ast_tree_from_string(const char *str)
 	replaced_str = replacer(str);
 	tokens = lexer(replaced_str);
 	ast_root = create_token_ast_from_tokens(tokens);
+	ast_root = merge_arguments_in_ast(ast_root);
 	free(tokens);
 	free(replaced_str);
 	return (ast_root);
 }
-

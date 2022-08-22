@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_replaced_string_size.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parksungjun <sungjpar@student.42seoul      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:51:47 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/20 23:28:28 by parksungj        ###   ########.fr       */
+/*   Updated: 2022/08/22 20:31:53 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

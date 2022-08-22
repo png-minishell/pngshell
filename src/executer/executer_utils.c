@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:19:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 21:25:36 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:31:15 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,40 +18,13 @@
 #include "executer.h"
 #include "libft.h"
 
-static size_t	get_argv_size(t_btree_node *node)
-{
-	size_t	num;
-
-	num = 0;
-	while (node->right_child)
-	{
-		node = node->right_child;
-		++num;
-	}
-	return (num);
-}
-
 static t_cmd	get_cmd(t_btree_node *const cmd_node)
 {
-	const size_t	argv_size = get_argv_size(cmd_node);
+	const t_token	*token = cmd_node->content;
 	t_cmd			cmd;
-	char			**argv;
-	size_t			index;
-	t_btree_node	*node;
 
-	argv = e_malloc(sizeof(char *) * (argv_size + 2));
-	index = 1;
-	node = cmd_node->right_child;
-	while (node)
-	{
-		argv[index] = ft_strdup(((t_token *)(node->content))->str);
-		node = node->right_child;
-		++index;
-	}
-	argv[index] = NULL;
-	cmd.cmd_string = ft_strdup(((t_token *)(cmd_node->content))->str);
-	cmd.arguments = argv;
-	argv[0] = ft_strdup(cmd.cmd_string);
+	cmd.path = token->str;
+	cmd.argv = token->arguments;
 	return (cmd);
 }
 

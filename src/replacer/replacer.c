@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 14:01:53 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 16:01:34 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:00:45 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,3 @@ char	*replacer(const char *str)
 	free(result_tmp);
 	return (result);
 }
-
-/* test code 
-#include <stdio.h>
-char	**envp;
-char	**set;
-
-int	main(void)
-{
-	char	*tc2 = "cat -e < hello.txt | grep \"hello\" | echo $PATH | cat -e '$HOME' > $PATH";
-	char	*tc = "\\$PATH hello i\\\'m \"$HOME \\$\" \"\\\"\" path is \"$PATH adb\\$PATH\"\n\r 'say' '$PATH' $PATH";
-	char	**etmp = e_malloc(sizeof(char *) * 2);
-	char	**stmp = e_malloc(sizeof(char *) * 2);
-	etmp[0] = "HOME=i'm_replaced";
-	etmp[1] = NULL;
-	stmp[0] = "PATH=I'M_REPLACED";
-	stmp[1] = NULL;
-	envp = etmp;
-	set = stmp;
-	printf("%s\n", tc2);
-	char	*res = replacer(tc2);
-	printf("%s\n", res);
-	free(res);
-	system("leaks a.out > test.txt; cat test.txt; rm test.txt");
-}
-*/

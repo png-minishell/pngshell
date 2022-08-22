@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:19:29 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 15:20:13 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:05:56 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXECUTER_H
 
 # include <stddef.h>
+# include <unistd.h>
 # include "binary_tree.h"
 # include "minishell_definitions.h"
 # define PIPE_INDEX_READ 0
@@ -31,4 +32,9 @@ t_btree_node	*get_next_root(t_btree_node *const left_leaf);
 t_status		do_infile_redirection(const char *path);
 t_status		do_outfile_redirection(const char *path, int flag, int mode);
 t_status		do_heredoc_redirection(void);
+
+void			run_commands(\
+					t_btree_node *ast,
+					pid_t *pid, const size_t number_of_process);
+
 #endif

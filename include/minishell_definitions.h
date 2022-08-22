@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 15:20:08 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:30:26 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef enum e_token_kind
 
 typedef enum e_token_status
 {
-	ST_END = 126,
 	ST_START,
 	ST_CMD,
 	ST_ARG,
@@ -69,19 +68,21 @@ typedef enum e_token_status
 	ST_BRACE,
 	ST_FILE_PATH,
 	ST_EOF,
-	ST_ERROR = 127
+	ST_ERROR = 127,
+	ST_END = 126,
 }	t_token_status;
 
 typedef struct s_token
 {
 	char			*str;
+	char			**arguments;
 	t_token_kind	kind;
 }	t_token;
 
 typedef struct s_cmd
 {
-	char	*cmd_string;
-	char	**arguments;
+	char	*path;
+	char	**argv;
 }	t_cmd;
 
 extern char	**envp;
@@ -97,9 +98,12 @@ t_btree_node	*create_ast_tree_from_string(const char *str);
 void			heredoc(const char *limiter);
 void			run_heredoc(t_btree_node *ast);
 t_status		execute_commands_from_ast(t_btree_node *ast);
-int		what_is_this_file(char *file, struct stat *file_buf);
-int		check_permission(char *absolute_path);
-char	*find_excute_file_path(char *command_name, char **envp);
+int				what_is_this_file(char *file, struct stat *file_buf);
+int				check_permission(char *absolute_path);
+char			*find_execute_file_path(char *command_name);
+void			free_strings(char **strings);
+void			free_token(void *ptr);
+
 
 # define HEREDOC_FILE_NAME ".heredoc.tmp"
 

@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 14:41:03 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/20 00:44:02 by parksungj        ###   ########.fr       */
+/*   Updated: 2022/08/22 20:41:19 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ t_token	*create_malloced_token(t_token token)
 	t_token	*new_token;
 
 	new_token = e_malloc(sizeof(t_token));
-	new_token->str = token.str;
-	new_token->kind = token.kind;
+	*new_token = token;
 	return (new_token);
 }
 
@@ -28,7 +27,7 @@ t_token_type	get_token_type(t_token token)
 {
 	const t_token_kind	kind = token.kind;
 
-	if (kind == TK_WORD)
+	if (kind == TK_WORD || kind == TK_WORD_DOUBLE_QUOTE)
 		return (TYPE_WORD);
 	if (kind == TK_LESS || kind == TK_DOUBLE_LESS
 		|| kind == TK_GREATER || kind == TK_DOUBLE_GREATER)

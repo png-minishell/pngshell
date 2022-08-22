@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stat_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mingylee <mingylee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:49:00 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/21 16:02:19 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:00:31 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	check_permission(char *absolute_path)
 {
 	struct stat	buf;
 
-	if (what_is_this_file(absolute_path, &buf) != 4 && what_is_this_file(absolute_path, &buf) != 5)
+	if (what_is_this_file(absolute_path, &buf) != TYPE_REGULAR
+		&& what_is_this_file(absolute_path, &buf) != TYPE_LINK)
 		return (FALSE);
 	if ((buf.st_mode & S_IXUSR) != 0)
 		return (TRUE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:55:15 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/18 14:43:49 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:51:07 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_btree_node	*find_node_position(\
 					t_btree_node *current_node,
 					t_btree_node *node);
 t_btree_node	*create_token_ast_from_tokens(t_token *tokens);
-t_btree_node	*parser(const char *str);
+t_btree_node	*create_ast_tree_from_string(const char *str);
+t_btree_node	*merge_arguments_in_ast(t_btree_node *ast);
 
 #endif

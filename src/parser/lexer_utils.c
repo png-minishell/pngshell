@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:23:46 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/21 17:44:25 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:34:53 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  *	t_tokenized_string list sturcture :
  *		lst [ content : t_tokenized_string * ]
  * */
-t_token *lst_to_arr(t_list *head)
+t_token	*lst_to_arr(t_list *head)
 {
 	const size_t	lst_size = ft_lstsize(head);
 	t_token			*arr;
@@ -52,6 +52,8 @@ t_token_status	get_status(\
 		return (ST_GREATER);
 	if (str[index] == '|')
 		return (ST_PIPE);
+	if (str[index] == '"')
+		return (ST_DOUBLE_QUOTE);
 	if (prev_status == ST_DOUBLE_GREATER || prev_status == ST_DOUBLE_LESS
 		|| prev_status == ST_GREATER || prev_status == ST_LESS)
 		return (ST_FILE_PATH);
@@ -72,6 +74,8 @@ t_token_kind	get_token_kind(const t_token_status status)
 		return (TK_DOUBLE_LESS);
 	if (status == ST_DOUBLE_GREATER)
 		return (TK_DOUBLE_GREATER);
+	if (status == ST_DOUBLE_QUOTE)
+		return (TK_WORD_DOUBLE_QUOTE);
 	if (status == ST_PIPE)
 		return (TK_PIPE);
 	if (status == ST_CMD)
@@ -90,5 +94,6 @@ t_token	*get_new_token(char *str, const t_token_status status)
 	new_token = e_malloc(sizeof(t_token));
 	new_token->kind = get_token_kind(status);
 	new_token->str = str;
+	new_token->arguments = NULL;
 	return (new_token);
 }
