@@ -6,9 +6,11 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 14:15:07 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 21:53:37 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:57:03 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "replacer.h"
 
 void	replace_backslash_and_copy_string(\
 		const char *str,
