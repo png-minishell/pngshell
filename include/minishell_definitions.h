@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 20:23:21 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:20:08 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,10 @@ char			*get_value(const char *key, char **envp, char **set);
 char			*get_key(const char *str);
 char			*env_substituter(const char *str, char **envp, char **set);
 char			*replacer(const char *str);
-t_btree_node	*parser(const char *str);
+t_btree_node	*create_ast_tree_from_string(const char *str);
 void			heredoc(const char *limiter);
 void			run_heredoc(t_btree_node *ast);
+t_status		execute_commands_from_ast(t_btree_node *ast);
 
 # define HEREDOC_FILE_NAME ".heredoc.tmp"
 

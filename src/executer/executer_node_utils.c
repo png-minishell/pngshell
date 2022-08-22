@@ -6,9 +6,10 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:20:40 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 21:31:38 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:19:34 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "executer.h"
 #include "libft.h"
@@ -30,7 +31,19 @@ t_btree_node	*get_next_root(t_btree_node *const left_leaf)
 	t_btree_node	*node;
 
 	node = left_leaf;
-	while (node->parent && get_node_token_kind(node) != TK_PIPE)
-		node = node->parent;
+	if (get_node_token_kind(node) == TK_PIPE)
+	{
+		if (node->parent)
+			return (node->parent);
+		else
+			return (node);
+	}
+	else
+	{
+		while (node->parent && get_node_token_kind(node) != TK_PIPE)
+		{
+			node = node->parent;
+		}
+	}
 	return (node);
 }

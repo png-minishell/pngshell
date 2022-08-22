@@ -6,11 +6,12 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:20:38 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 21:07:00 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:10:13 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include "executer.h"
 #include <readline/readline.h>
@@ -34,8 +35,11 @@ int	main(int argc, char **argv, char **env)
 	{
 		char	*user_cmd;
 		user_cmd = readline("shell$ ");
-		t_btree_node *ast = parser(user_cmd);
+		t_btree_node *ast = create_ast_tree_from_string(user_cmd);
 		run_heredoc(ast);
-		executer(ast);
+		execute_commands_from_ast(ast);
+		unlink(HEREDOC_FILE_NAME);
+		bst_clear_tree(ast);
+		free(user_cmd);
 	}
 }
