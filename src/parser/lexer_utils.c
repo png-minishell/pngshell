@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:23:46 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/23 14:26:02 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:02:03 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_token_status	get_status(\
 		return (ST_PIPE);
 	if (str[index] == '"')
 		return (ST_DOUBLE_QUOTE);
+	if (str[index] == '\'')
+		return (ST_SINGLE_QUOTE);
 	if (prev_status == ST_DOUBLE_GREATER || prev_status == ST_DOUBLE_LESS
 		|| prev_status == ST_GREATER || prev_status == ST_LESS)
 		return (ST_FILE_PATH);
@@ -75,6 +77,8 @@ t_token_kind	get_token_kind(const t_token_status status)
 	if (status == ST_DOUBLE_GREATER)
 		return (TK_DOUBLE_GREATER);
 	if (status == ST_DOUBLE_QUOTE)
+		return (TK_WORD_DOUBLE_QUOTE);
+	if (status == ST_SINGLE_QUOTE)
 		return (TK_WORD_DOUBLE_QUOTE);
 	if (status == ST_PIPE)
 		return (TK_PIPE);
