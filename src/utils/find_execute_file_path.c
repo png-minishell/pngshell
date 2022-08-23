@@ -6,13 +6,32 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:07:36 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/22 21:30:11 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:13:51 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 #include "minishell_definitions.h"
+
+int	check_command_in_builtin(const char *command)
+{
+	if (ft_strncmp(command, "cd", 2))
+		return (1);
+	else if (ft_strncmp(command, "echo", 4))
+		return (1);
+	else if (ft_strncmp(command, "pwd", 3))
+		return (1);
+	else if (ft_strncmp(command, "export", 6))
+		return (1);
+	else if (ft_strncmp(command, "unset", 5))
+		return (1);
+	else if (ft_strncmp(command, "env", 3))
+		return (1);
+	else if (ft_strncmp(command, "exit", 4))
+		return (1);
+	return (0);
+}
 
 char	**get_paths(void)
 {
