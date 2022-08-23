@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:09:10 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 20:20:09 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:25:00 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static void	write_list(const int fd, t_list *head)
 	}
 }
 
-void	heredoc(const char *limiter)
+int	heredoc(const char *limiter)
 {
 	char			*line;
 	t_list			*head;
-	int				fd;
+	int				fds[2];
 
 	head = NULL;
-	fd = e_open(HEREDOC_FILE_NAME, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	e_pipe(fds);
 	while (1)
 	{
 		line = readline("heredoc> ");
@@ -42,7 +42,8 @@ void	heredoc(const char *limiter)
 			break ;
 		ft_lstadd_back(&head, ft_lstnew(ft_strjoin(line, "\n")));
 	}
-	write_list(fd, head);
+	write_list(fds[1], head);
 	ft_lstclear(&head, free);
-	close(fd);
+	close(fds[1]);
+	return (fds[0]);
 }

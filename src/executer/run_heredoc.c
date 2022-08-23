@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:14:22 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 20:21:47 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:26:23 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	run_heredoc(t_btree_node *root)
 	if (get_node_token_kind(root) == TK_DOUBLE_LESS)
 	{
 		token = root->right_child->content;
-		heredoc(token->str);
+		token->pipe_fd = heredoc(token->str);
 	}
 	run_heredoc(root->left_child);
 	run_heredoc(root->right_child);

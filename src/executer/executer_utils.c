@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:19:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 17:31:15 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:27:47 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_status	do_token_purpose(t_btree_node *node, t_cmd *cmd)
 		do_outfile_redirection(\
 			r_token->str, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	else if (kind == TK_DOUBLE_LESS)
-		do_heredoc_redirection();
+		do_heredoc_redirection(r_token->pipe_fd);
 	else if (kind == TK_DOUBLE_GREATER)
 		do_outfile_redirection(\
 			r_token->str, O_WRONLY | O_APPEND | O_CREAT, 0644);

@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:23:46 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/22 20:34:53 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:26:02 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ t_token	*get_new_token(char *str, const t_token_status status)
 	new_token->kind = get_token_kind(status);
 	new_token->str = str;
 	new_token->arguments = NULL;
+	new_token->pipe_fd = -1;
 	return (new_token);
 }

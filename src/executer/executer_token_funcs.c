@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:26:28 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 20:24:11 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:27:25 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,8 @@ t_status	do_outfile_redirection(const char *path, int flag, int mode)
 	return (SUCCESS);
 }
 
-t_status	do_heredoc_redirection(void)
+t_status	do_heredoc_redirection(const int fd)
 {
-	int	fd;
-
-	fd = e_open(HEREDOC_FILE_NAME, O_RDONLY, 0644);
 	e_dup2(fd, STDIN_FILENO);
 	return (SUCCESS);
 }
