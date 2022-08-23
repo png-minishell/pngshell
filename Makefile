@@ -6,13 +6,13 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/22 21:34:19 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/23 14:55:48 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 NAME = minishell
 
@@ -55,6 +55,7 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			executer/run_commands.c\
 			heredoc/heredoc.c\
 			parser/index_skip_functions.c\
+			parser/check_valid_ast.c\
 			parser/lexer.c\
 			parser/lexer_utils.c\
 			parser/parser.c\

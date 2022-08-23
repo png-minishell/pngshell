@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 21:02:54 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 21:32:38 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:26:56 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,15 @@ static t_status	do_command(t_btree_node *const left_leaf)
 	}
 	if (cmd.path == NULL)
 	{
-		cmd.path = find_execute_file_path("cat");
-		cmd.argv = e_malloc(sizeof(char *) * 2);
-		cmd.argv[0] = ft_strdup("cat");
-		cmd.argv[1] = NULL;
+		char	buf[1001];
+		int		read_size;
+
+		while ((read_size = read(STDIN_FILENO, buf, 1000)) > 0)
+		{
+			buf[read_size] = 0;
+			write(STDOUT_FILENO, buf, read_size);
+		}
+		return (SUCCESS);
 	}
 	if (execve(cmd.path, cmd.argv, envp) != SUCCESS)
 		perror(cmd.path); // NULL -> envp is global envp..
@@ -89,7 +94,6 @@ void	run_commands(\
 		{
 			set_pipe(index, number_of_process, pipelines);
 			do_command(left_leaf);
-			write(1, 0, 1);
 			exit(errno);
 		}
 		if (root->right_child)

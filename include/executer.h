@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:19:29 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 21:05:56 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:27:23 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_btree_node	*get_next_root(t_btree_node *const left_leaf);
 
 t_status		do_infile_redirection(const char *path);
 t_status		do_outfile_redirection(const char *path, int flag, int mode);
-t_status		do_heredoc_redirection(void);
+t_status		do_heredoc_redirection(const int fd);
 
 void			run_commands(\
 					t_btree_node *ast,
