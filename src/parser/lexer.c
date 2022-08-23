@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:04:12 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/23 15:24:38 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 16:49:21 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "lexer.h"
 #include "libft.h"
 #include "error_control_functions.h"
+#include "minishell_definitions.h"
 
 static t_bool	is_operator(t_token_status status)
 {
@@ -22,7 +23,9 @@ static t_bool	is_operator(t_token_status status)
 		|| status == ST_DOUBLE_GREATER
 		|| status == ST_LESS
 		|| status == ST_GREATER
-		|| status == ST_PIPE);
+		|| status == ST_PIPE
+		|| status == ST_DOUBLE_QUOTE
+		|| status == ST_SINGLE_QUOTE);
 }
 
 t_token	*lexer(const char *str)
