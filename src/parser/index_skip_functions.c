@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 23:17:40 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/23 16:59:35 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:51:40 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ size_t	skip_until_quote(\
 	else if (status == ST_SINGLE_QUOTE)
 		quote = '\'';
 	index = start_index;
-	while (str[index] && str[index] != quote)
+	while (str[index]
+		&& (str[index] != quote || (str[index] == quote
+				&& str[index - 1] == '\\')))
 	{
 		++index;
 	}

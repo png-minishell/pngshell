@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:44:57 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/23 15:46:23 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:34:25 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	check_tree(t_btree_node *node, t_status *status)
 
 t_status	check_valid_ast(t_btree_node *ast)
 {
-	t_status		status;
+	t_status	status;
 
 	status = SUCCESS;
 	check_tree(ast, &status);

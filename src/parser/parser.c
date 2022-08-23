@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:54:59 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/23 17:16:46 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:52:01 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,24 @@ static void	insert_node(t_btree_node *current_node, t_btree_node *new_node)
 		bst_link_left_child(current_node, new_node);
 	else if (cmp_kind(*current_node_token, *new_node_token) > 0)
 	{
-		bst_link_left_child(new_node, current_node->right_child);
+		if (current_node->right_child != NULL)
+			bst_link_left_child(new_node, current_node->right_child);
 		bst_link_right_child(current_node, new_node);
 	}
 	else
+	{
 		bst_insert_node_left(current_node, new_node);
+	}
+}
+
+static t_bool	insert_condition_check(\
+	t_token *current_node_token, t_token *tokens, int index)
+{
+	return (
+		cmp_kind(*current_node_token, tokens[index]) >= 0
+		&& (get_token_type(*current_node_token) != TYPE_REDIRECT
+			&& get_token_type(tokens[index]) != TYPE_REDIRECT)
+	);
 }
 
 t_btree_node	*create_token_ast_from_tokens(t_token *tokens)
@@ -49,7 +62,7 @@ t_btree_node	*create_token_ast_from_tokens(t_token *tokens)
 		if (current_node != NULL)
 		{
 			current_node_token = (t_token *)current_node->content;
-			if (cmp_kind(*current_node_token, tokens[index]) >= 0)
+			if (insert_condition_check(current_node_token, tokens, index))
 				bst_link_right_child(current_node, new_node);
 			else
 			{

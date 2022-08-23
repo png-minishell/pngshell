@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:19:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/23 14:27:47 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:24:45 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_status	do_token_purpose(t_btree_node *node, t_cmd *cmd)
 	const t_token_kind	kind = get_node_token_kind(node);
 	t_token				*r_token;
 
+	r_token = node->content;
 	if (node->right_child)
 		r_token = node->right_child->content;
 	if (kind == TK_CMD)
