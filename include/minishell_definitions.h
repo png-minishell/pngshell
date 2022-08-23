@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_definitions.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/19 17:26:14 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:30:26 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_DEFINITIONS_H
 # define MINISHELL_DEFINITIONS_H
+
+# include <sys/stat.h>
+# include "binary_tree.h"
 
 # define FAILED -1
 # define SUCCESS 0
@@ -48,7 +51,6 @@ typedef enum e_token_kind
 
 typedef enum e_token_status
 {
-	ST_END = 126,
 	ST_START,
 	ST_CMD,
 	ST_ARG,
@@ -66,24 +68,44 @@ typedef enum e_token_status
 	ST_BRACE,
 	ST_FILE_PATH,
 	ST_EOF,
-	ST_ERROR = 127
+	ST_ERROR = 127,
+	ST_END = 126,
 }	t_token_status;
 
 typedef struct s_token
 {
 	char			*str;
+	char			**arguments;
 	t_token_kind	kind;
 }	t_token;
 
 typedef struct s_cmd
 {
-	char	*cmd_string;
-	char	**arguments;
+	char	*path;
+	char	**argv;
 }	t_cmd;
 
-char	*get_value(const char *key, char **envp, char **set);
-char	*get_key(const char *str);
-char	*env_substituter(const char *str, char **envp);
+extern char	**envp;
+extern char	**set;
+extern int	stdin_bak;
+extern int	stdout_bak;
+
+char			*get_value(const char *key, char **envp, char **set);
+char			*get_key(const char *str);
+char			*env_substituter(const char *str, char **envp, char **set);
+char			*replacer(const char *str);
+t_btree_node	*create_ast_tree_from_string(const char *str);
+void			heredoc(const char *limiter);
+void			run_heredoc(t_btree_node *ast);
+t_status		execute_commands_from_ast(t_btree_node *ast);
+int				what_is_this_file(char *file, struct stat *file_buf);
+int				check_permission(char *absolute_path);
+char			*find_execute_file_path(char *command_name);
+void			free_strings(char **strings);
+void			free_token(void *ptr);
+
+
+# define HEREDOC_FILE_NAME ".heredoc.tmp"
 
 /* FILE TYPE DEFINE */
 # define TYPE_FIFO		0

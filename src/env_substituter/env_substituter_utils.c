@@ -3,29 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   env_substituter_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 19:38:29 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/18 19:39:34 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:52:40 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdlib.h>
 #include "libft.h"
-
-void	free_strings_array(char **arr)
-{
-	size_t	index;
-
-	index = 0;
-	while (arr[index])
-	{
-		free(arr[index]);
-		++index;
-	}
-	free(arr[index]);
-	return ;
-}
+#include "minishell_definitions.h"
 
 static char	*find_key_and_get_value(const char *key, char **envp)
 {
@@ -40,10 +28,10 @@ static char	*find_key_and_get_value(const char *key, char **envp)
 		if (ft_strncmp(strs[0], key, -1) == 0)
 		{
 			value = ft_strdup(strs[1]);
-			free_strings_array(strs);
+			free_strings(strs);
 			return (value);
 		}
-		free_strings_array(strs);
+		free_strings(strs);
 		++index;
 	}
 	return (NULL);
@@ -51,7 +39,6 @@ static char	*find_key_and_get_value(const char *key, char **envp)
 
 char	*get_value(const char *key, char **envp, char **set)
 {
-	size_t	index;
 	char	*value;
 
 	value = find_key_and_get_value(key, envp);
@@ -68,10 +55,12 @@ char	*get_key(const char *str)
 	size_t	index;
 
 	index = 1;
-	while (!ft_isspace(str[index]) && str[index] != '$')
+	while (str[index]
+		&& !ft_isspace(str[index])
+		&& str[index] != '$'
+		&& str[index] != '"')
 	{
 		++index;
 	}
 	return (ft_substr(str + 1, 0, index - 1));
 }
-

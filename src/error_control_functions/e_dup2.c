@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bst_delete_node.c                                  :+:      :+:    :+:   */
+/*   e_dup2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 15:25:31 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 19:49:47 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/19 19:46:49 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/21 19:45:15 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "binary_tree.h"
+#include <stdio.h>
+#include <errno.h>
+#include <unistd.h>
+#include "error_control_functions.h"
+#include "minishell_definitions.h"
 
-t_btree_node	*bst_delete_node(t_btree_node *node, void (*free_func)(void *))
+t_status	e_dup2(const int fd1, const int fd2)
 {
-	free_func(node->content);
-	free(node);
-	return (NULL);
+	if (dup2(fd1, fd2) == FAILED)
+	{
+		perror(NULL);
+		exit(errno);
+	}
+	return (SUCCESS);
 }

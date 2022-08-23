@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:53:13 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/19 17:25:47 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:45:12 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_btree_node
 
 t_btree_node	*bst_get_root(t_btree_node *node);
 t_btree_node	*bst_create_node(void *content);
-t_btree_node	*bst_delete_node(t_btree_node *node);
-void			bst_clear_tree(t_btree_node *root);
+t_btree_node	*bst_delete_node(t_btree_node *node, void (*free_func)(void *));
+void			bst_clear_tree(t_btree_node *root, void (*free_func)(void *));
 t_btree_node	*bst_link_left_child(t_btree_node *parent, t_btree_node *child);
 t_btree_node	*bst_link_right_child(\
 					t_btree_node *parent,

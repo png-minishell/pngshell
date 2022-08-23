@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bst_delete_node.c                                  :+:      :+:    :+:   */
+/*   free_strings.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 15:25:31 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 19:49:47 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/22 17:08:48 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/22 17:09:14 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "binary_tree.h"
+#include "minishell_definitions.h"
 
-t_btree_node	*bst_delete_node(t_btree_node *node, void (*free_func)(void *))
+void	free_strings(char **strings)
 {
-	free_func(node->content);
-	free(node);
-	return (NULL);
+	size_t	index;
+
+	index = 0;
+	while (strings[index])
+		free(strings[index++]);
+	free(strings);
 }

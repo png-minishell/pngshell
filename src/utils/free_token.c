@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bst_delete_node.c                                  :+:      :+:    :+:   */
+/*   free_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 15:25:31 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 19:49:47 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/22 17:36:26 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/22 21:49:40 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "binary_tree.h"
+#include "minishell_definitions.h"
 
-t_btree_node	*bst_delete_node(t_btree_node *node, void (*free_func)(void *))
+void	free_token(void *ptr)
 {
-	free_func(node->content);
-	free(node);
-	return (NULL);
+	t_token	*token;
+
+	token = ptr;
+	free(token->str);
+	if (token->arguments)
+		free_strings(token->arguments);
+	free(token);
 }

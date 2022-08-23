@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bst_delete_node.c                                  :+:      :+:    :+:   */
+/*   run_heredoc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 15:25:31 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 19:49:47 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/21 20:14:22 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/21 20:21:47 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "binary_tree.h"
+#include "minishell_definitions.h"
+#include "executer.h"
 
-t_btree_node	*bst_delete_node(t_btree_node *node, void (*free_func)(void *))
+void	run_heredoc(t_btree_node *root)
 {
-	free_func(node->content);
-	free(node);
-	return (NULL);
+	t_token	*token;
+
+	if (root == NULL)
+		return ;
+	if (get_node_token_kind(root) == TK_DOUBLE_LESS)
+	{
+		token = root->right_child->content;
+		heredoc(token->str);
+	}
+	run_heredoc(root->left_child);
+	run_heredoc(root->right_child);
 }

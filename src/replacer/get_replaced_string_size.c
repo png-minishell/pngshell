@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bst_delete_node.c                                  :+:      :+:    :+:   */
+/*   get_replaced_string_size.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 15:25:31 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 19:49:47 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/20 17:51:47 by parksungj         #+#    #+#             */
+/*   Updated: 2022/08/22 20:31:53 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "binary_tree.h"
+#include "minishell_definitions.h"
+#include "replacer.h"
+#include "libft.h"
 
-t_btree_node	*bst_delete_node(t_btree_node *node, void (*free_func)(void *))
+size_t	get_replaced_string_size(const char *str)
 {
-	free_func(node->content);
-	free(node);
-	return (NULL);
+	char	*env_replaced_str;
+	size_t	size;
+
+	env_replaced_str = env_substituter(str, envp, set);
+	size = ft_strlen(env_replaced_str) + ft_strlen(str);
+	free(env_replaced_str);
+	return (size);
 }

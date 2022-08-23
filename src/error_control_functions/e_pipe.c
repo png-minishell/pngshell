@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bst_delete_node.c                                  :+:      :+:    :+:   */
+/*   e_pipe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 15:25:31 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 19:49:47 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/21 15:51:36 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/21 19:45:43 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <errno.h>
 #include <stdlib.h>
-#include "binary_tree.h"
+#include <stdio.h>
+#include "error_control_functions.h"
 
-t_btree_node	*bst_delete_node(t_btree_node *node, void (*free_func)(void *))
+t_status	e_pipe(int *fds)
 {
-	free_func(node->content);
-	free(node);
-	return (NULL);
+	if (pipe(fds) == FAILED)
+	{
+		perror(NULL);
+		exit(errno);
+	}
+	return (SUCCESS);
 }
