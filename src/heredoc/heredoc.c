@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:09:10 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/23 14:25:00 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:37:27 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	heredoc(const char *limiter)
 	while (1)
 	{
 		line = readline("heredoc> ");
-		if (ft_strncmp(line, limiter, -1) == 0 || line[0] == 0)
+		if (line == NULL || ft_strncmp(line, limiter, -1) == 0)
 			break ;
 		ft_lstadd_back(&head, ft_lstnew(ft_strjoin(line, "\n")));
 	}
