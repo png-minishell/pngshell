@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:04:12 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/22 20:32:57 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:24:38 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@
 #include "libft.h"
 #include "error_control_functions.h"
 
-static t_bool	is_double_operator(t_token_status status)
+static t_bool	is_operator(t_token_status status)
 {
-	return (status == ST_DOUBLE_LESS || status == ST_DOUBLE_GREATER);
+	return (status == ST_DOUBLE_LESS
+		|| status == ST_DOUBLE_GREATER
+		|| status == ST_LESS
+		|| status == ST_GREATER
+		|| status == ST_PIPE);
 }
 
 t_token	*lexer(const char *str)
@@ -54,8 +58,7 @@ t_status	tokenize_string(const char *str, t_list **token_list)
 		ft_lstadd_back(token_list, ft_lstnew(get_new_token(word, status)));
 		if (str[current_index] == '\0')
 			break ;
-		++current_index;
-		current_index += is_double_operator(status);
+		current_index += is_operator(status);
 	}
 	return (SUCCESS);
 }
