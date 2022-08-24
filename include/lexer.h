@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 23:16:22 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/17 20:13:25 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:02:42 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "libft.h"
 # include "minishell_definitions.h"
-
-# define SYMBOLS "$()<>|&\'\"\\*"
 
 /* Main lexer functions */
 t_token				*lexer(const char *str);

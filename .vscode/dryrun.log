@@ -1,88 +1,203 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/parksungjun/CodeProjects/pngshell'
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./library/libft
+ 
 make[1]: Entering directory `/Users/parksungjun/CodeProjects/pngshell/library/libft'
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_atoi.c -o src/ft_atoi.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_bzero.c -o src/ft_bzero.o
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_calloc.c -o src/ft_calloc.o
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_isalnum.c -o src/ft_isalnum.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_isalpha.c -o src/ft_isalpha.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_isascii.c -o src/ft_isascii.o
  
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_isdigit.c -o src/ft_isdigit.o
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_isprint.c -o src/ft_isprint.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_itoa.c -o src/ft_itoa.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_memchr.c -o src/ft_memchr.o
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_memcmp.c -o src/ft_memcmp.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_memcpy.c -o src/ft_memcpy.o
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_memmove.c -o src/ft_memmove.o
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_memset.c -o src/ft_memset.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_putchar_fd.c -o src/ft_putchar_fd.o
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_putendl_fd.c -o src/ft_putendl_fd.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_putnbr_fd.c -o src/ft_putnbr_fd.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_putstr_fd.c -o src/ft_putstr_fd.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_split.c -o src/ft_split.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strchr.c -o src/ft_strchr.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strdup.c -o src/ft_strdup.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_striteri.c -o src/ft_striteri.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strjoin.c -o src/ft_strjoin.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strlcpy.c -o src/ft_strlcpy.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strlen.c -o src/ft_strlen.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strlcat.c -o src/ft_strlcat.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strncmp.c -o src/ft_strncmp.o
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strnstr.c -o src/ft_strnstr.o
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strmapi.c -o src/ft_strmapi.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strrchr.c -o src/ft_strrchr.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strtrim.c -o src/ft_strtrim.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_substr.c -o src/ft_substr.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_tolower.c -o src/ft_tolower.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_toupper.c -o src/ft_toupper.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_isinset.c -o src/ft_isinset.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_isspace.c -o src/ft_isspace.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strcspn.c -o src/ft_strcspn.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_strpbrk.c -o src/ft_strpbrk.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_get_next_line.c -o src/ft_get_next_line.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_printf.c -o src/ft_printf.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_putaddr_fd.c -o src/ft_putaddr_fd.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_puthex_fd.c -o src/ft_puthex_fd.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_set_print_color.c -o src/ft_set_print_color.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_lstnew.c -o src/ft_lstnew.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_lstadd_front.c -o src/ft_lstadd_front.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_lstsize.c -o src/ft_lstsize.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_lstlast.c -o src/ft_lstlast.o
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_lstadd_back.c -o src/ft_lstadd_back.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_lstclear.c -o src/ft_lstclear.o
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_lstdelone.c -o src/ft_lstdelone.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_lstiter.c -o src/ft_lstiter.o
+ 
 cc -Wall -Wextra -Werror -I ./include/ -c src/ft_lstmap.c -o src/ft_lstmap.o
 ar rcs libft.a ./src/ft_atoi.o ./src/ft_bzero.o ./src/ft_calloc.o ./src/ft_isalnum.o ./src/ft_isalpha.o ./src/ft_isascii.o ./src/ft_isdigit.o ./src/ft_isprint.o ./src/ft_itoa.o ./src/ft_memchr.o ./src/ft_memcmp.o ./src/ft_memcpy.o ./src/ft_memmove.o ./src/ft_memset.o ./src/ft_putchar_fd.o ./src/ft_putendl_fd.o ./src/ft_putnbr_fd.o ./src/ft_putstr_fd.o ./src/ft_split.o ./src/ft_strchr.o ./src/ft_strdup.o ./src/ft_striteri.o ./src/ft_strjoin.o ./src/ft_strlcpy.o ./src/ft_strlen.o ./src/ft_strlcat.o ./src/ft_strncmp.o ./src/ft_strnstr.o ./src/ft_strmapi.o ./src/ft_strrchr.o ./src/ft_strtrim.o ./src/ft_substr.o ./src/ft_tolower.o ./src/ft_toupper.o ./src/ft_isinset.o ./src/ft_isspace.o ./src/ft_strcspn.o ./src/ft_strpbrk.o ./src/ft_get_next_line.o ./src/ft_printf.o ./src/ft_putaddr_fd.o ./src/ft_puthex_fd.o ./src/ft_set_print_color.o ./src/ft_lstnew.o ./src/ft_lstadd_front.o ./src/ft_lstsize.o ./src/ft_lstlast.o ./src/ft_lstadd_back.o ./src/ft_lstclear.o ./src/ft_lstdelone.o ./src/ft_lstiter.o ./src/ft_lstmap.o
+ 
 make[1]: Leaving directory `/Users/parksungjun/CodeProjects/pngshell/library/libft'
+ 
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./builtin_programs/echo/
  
 make[1]: Entering directory `/Users/parksungjun/CodeProjects/pngshell/builtin_programs/echo'
 cc -Wall -Wextra -Werror -I./include/ -c src/echo.c -o src/echo.o
+ 
 cc -Wall -Wextra -Werror -I./include/ -c src/echo_string.c -o src/echo_string.o
+ 
 cc -Wall -Wextra -Werror -I./include/ -c src/get_option.c -o src/get_option.o
+ 
 cc -Wall -Wextra -Werror -I./include/ -c src/run_program.c -o src/run_program.o
 cc -Wall -Wextra -Werror ./src/echo.o ./src/echo_string.o ./src/get_option.o ./src/run_program.o -o echo -I./include/
 make[1]: Leaving directory `/Users/parksungjun/CodeProjects/pngshell/builtin_programs/echo'
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/binary_tree/bst_clear_tree.c -o src/binary_tree/bst_clear_tree.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/binary_tree/bst_get_root.c -o src/binary_tree/bst_get_root.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/binary_tree/bst_delete_node.c -o src/binary_tree/bst_delete_node.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/binary_tree/bst_create_node.c -o src/binary_tree/bst_create_node.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/binary_tree/bst_insert_node.c -o src/binary_tree/bst_insert_node.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/binary_tree/bst_link_right_child.c -o src/binary_tree/bst_link_right_child.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/binary_tree/bst_link_left_child.c -o src/binary_tree/bst_link_left_child.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/error_control_functions/e_malloc.c -o src/error_control_functions/e_malloc.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/parser/index_skip_functions.c -o src/parser/index_skip_functions.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/parser/lexer.c -o src/parser/lexer.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/parser/lexer_utils.c -o src/parser/lexer_utils.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/parser/parser.c -o src/parser/parser.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/parser/parser_utils.c -o src/parser/parser_utils.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/parser/parser_tester.c -o src/parser/parser_tester.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/env_substituter/env_substituter.c -o src/env_substituter/env_substituter.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/env_substituter/env_substituter_utils.c -o src/env_substituter/env_substituter_utils.o
-cc -Wall -Wextra -Werror -I./include/ -I./library/libft/include  -c src/heredoc/heredoc.c -o src/heredoc/heredoc.o
-cc -Wall -Wextra -Werror ./src/binary_tree/bst_clear_tree.o ./src/binary_tree/bst_get_root.o ./src/binary_tree/bst_delete_node.o ./src/binary_tree/bst_create_node.o ./src/binary_tree/bst_insert_node.o ./src/binary_tree/bst_link_right_child.o ./src/binary_tree/bst_link_left_child.o ./src/error_control_functions/e_malloc.o ./src/parser/index_skip_functions.o ./src/parser/lexer.o ./src/parser/lexer_utils.o ./src/parser/parser.o ./src/parser/parser_utils.o ./src/parser/parser_tester.o ./src/env_substituter/env_substituter.o ./src/env_substituter/env_substituter_utils.o ./src/heredoc/heredoc.o -L ./library/libft -lft -lreadline -o minishell -I./include/ -I./library/libft/include 
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/binary_tree/bst_clear_tree.c -o src/binary_tree/bst_clear_tree.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/binary_tree/bst_get_root.c -o src/binary_tree/bst_get_root.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/binary_tree/bst_delete_node.c -o src/binary_tree/bst_delete_node.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/binary_tree/bst_create_node.c -o src/binary_tree/bst_create_node.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/binary_tree/bst_insert_node.c -o src/binary_tree/bst_insert_node.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/binary_tree/bst_link_right_child.c -o src/binary_tree/bst_link_right_child.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/binary_tree/bst_link_left_child.c -o src/binary_tree/bst_link_left_child.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/error_control_functions/e_close.c -o src/error_control_functions/e_close.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/error_control_functions/e_dup2.c -o src/error_control_functions/e_dup2.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/error_control_functions/e_fork.c -o src/error_control_functions/e_fork.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/error_control_functions/e_malloc.c -o src/error_control_functions/e_malloc.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/error_control_functions/e_open.c -o src/error_control_functions/e_open.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/error_control_functions/e_pipe.c -o src/error_control_functions/e_pipe.o
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/executer/executer.c -o src/executer/executer.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/executer/executer_node_utils.c -o src/executer/executer_node_utils.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/executer/executer_token_funcs.c -o src/executer/executer_token_funcs.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/executer/executer_utils.c -o src/executer/executer_utils.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/executer/pipe_utils.c -o src/executer/pipe_utils.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/executer/run_heredoc.c -o src/executer/run_heredoc.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/executer/run_commands.c -o src/executer/run_commands.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/heredoc/heredoc.c -o src/heredoc/heredoc.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/parser/index_skip_functions.c -o src/parser/index_skip_functions.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/parser/check_valid_ast.c -o src/parser/check_valid_ast.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/parser/lexer.c -o src/parser/lexer.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/parser/lexer_utils.c -o src/parser/lexer_utils.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/parser/parser.c -o src/parser/parser.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/parser/parser_utils.c -o src/parser/parser_utils.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/parser/merge_arguments_in_ast.c -o src/parser/merge_arguments_in_ast.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/replacer/back_slash_replacer.c -o src/replacer/back_slash_replacer.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/replacer/double_quote_replacer.c -o src/replacer/double_quote_replacer.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/replacer/env_replacer.c -o src/replacer/env_replacer.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/replacer/get_replaced_string_size.c -o src/replacer/get_replaced_string_size.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/replacer/copy_string.c -o src/replacer/copy_string.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/replacer/replacer.c -o src/replacer/replacer.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/replacer/single_quote_replacer.c -o src/replacer/single_quote_replacer.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/env_substituter/env_substituter.c -o src/env_substituter/env_substituter.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/env_substituter/env_substituter_utils.c -o src/env_substituter/env_substituter_utils.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/utils/stat_check.c -o src/utils/stat_check.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/utils/find_execute_file_path.c -o src/utils/find_execute_file_path.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/utils/free_strings.c -o src/utils/free_strings.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/utils/free_token.c -o src/utils/free_token.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/utils/is_symbol.c -o src/utils/is_symbol.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address -I./include/ -I./library/libft/include  -c src/main.c -o src/main.o
+ 
+cc -Wall -Wextra -Werror -g3 -fsanitize=address ./src/binary_tree/bst_clear_tree.o ./src/binary_tree/bst_get_root.o ./src/binary_tree/bst_delete_node.o ./src/binary_tree/bst_create_node.o ./src/binary_tree/bst_insert_node.o ./src/binary_tree/bst_link_right_child.o ./src/binary_tree/bst_link_left_child.o ./src/error_control_functions/e_close.o ./src/error_control_functions/e_dup2.o ./src/error_control_functions/e_fork.o ./src/error_control_functions/e_malloc.o ./src/error_control_functions/e_open.o ./src/error_control_functions/e_pipe.o ./src/executer/executer.o ./src/executer/executer_node_utils.o ./src/executer/executer_token_funcs.o ./src/executer/executer_utils.o ./src/executer/pipe_utils.o ./src/executer/run_heredoc.o ./src/executer/run_commands.o ./src/heredoc/heredoc.o ./src/parser/index_skip_functions.o ./src/parser/check_valid_ast.o ./src/parser/lexer.o ./src/parser/lexer_utils.o ./src/parser/parser.o ./src/parser/parser_utils.o ./src/parser/merge_arguments_in_ast.o ./src/replacer/back_slash_replacer.o ./src/replacer/double_quote_replacer.o ./src/replacer/env_replacer.o ./src/replacer/get_replaced_string_size.o ./src/replacer/copy_string.o ./src/replacer/replacer.o ./src/replacer/single_quote_replacer.o ./src/env_substituter/env_substituter.o ./src/env_substituter/env_substituter_utils.o ./src/utils/stat_check.o ./src/utils/find_execute_file_path.o ./src/utils/free_strings.o ./src/utils/free_token.o ./src/utils/is_symbol.o ./src/main.o -L ./library/libft -lft -lreadline -o minishell -I./include/ -I./library/libft/include 
+ 
 make: Leaving directory `/Users/parksungjun/CodeProjects/pngshell'
  

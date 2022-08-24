@@ -57,8 +57,7 @@ char	*get_key(const char *str)
 	index = 1;
 	while (str[index]
 		&& !ft_isspace(str[index])
-		&& str[index] != '$'
-		&& str[index] != '"')
+		&& !is_symbol(str[index]))
 	{
 		++index;
 	}

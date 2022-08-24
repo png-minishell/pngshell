@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/23 14:56:35 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:00:13 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,11 @@ int				check_permission(char *absolute_path);
 char			*find_execute_file_path(char *command_name);
 void			free_strings(char **strings);
 void			free_token(void *ptr);
-t_status		check_valid_ast(t_btree_node *ast);
+t_status		check_valid_ast(t_btree_node *ast);\
+t_bool			is_symbol(const char c);
 
 # define HEREDOC_FILE_NAME ".heredoc.tmp"
+# define SYMBOLS "$<>|\'\"\\"
 
 /* FILE TYPE DEFINE */
 # define TYPE_FIFO		0

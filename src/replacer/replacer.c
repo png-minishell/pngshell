@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 14:01:53 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 21:00:45 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:30:45 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include "error_control_functions.h"
 #include "replacer.h"
 #include "libft.h"
+
+static t_bool	is_quote(const char c)
+{
+	return (c == '\'' || c == '"');
+}
 
 static void	scan_and_replace(\
 		const char *str, char *res)
@@ -27,11 +32,13 @@ static void	scan_and_replace(\
 	while (str[idx_str])
 	{
 		if (str[idx_str] == '\\')
-			res[(idx_res)++] = replace_backslash(str + idx_str, &idx_str);
+			res[idx_res++] = str[++idx_str];
 		else if (str[idx_str] == '\'')
 			single_quote_replacer(str + idx_str, res, &idx_str, &idx_res);
 		else if (str[idx_str] == '"')
 			double_quote_replacer(str + idx_str, res, &idx_str, &idx_res);
+		else if (str[idx_str] == '$' && is_quote(str[idx_str + 1]))
+			;
 		else if (str[idx_str] == '$' && str[idx_str + 1])
 			env_replacer(str + idx_str, res, &idx_str, &idx_res);
 		else

@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:04:12 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/23 16:49:21 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:28:08 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@
 
 static t_bool	is_operator(t_token_status status)
 {
-	return (status == ST_DOUBLE_LESS
-		|| status == ST_DOUBLE_GREATER
-		|| status == ST_LESS
+	if (status == ST_LESS
 		|| status == ST_GREATER
 		|| status == ST_PIPE
 		|| status == ST_DOUBLE_QUOTE
-		|| status == ST_SINGLE_QUOTE);
+		|| status == ST_SINGLE_QUOTE)
+		return (1);
+	else if (status == ST_DOUBLE_LESS
+		|| status == ST_DOUBLE_GREATER)
+		return (2);
+	else
+		return (0);
 }
 
 t_token	*lexer(const char *str)
