@@ -17,7 +17,7 @@
 #include "error_control_functions.h"
 #include "minishell_definitions.h"
 
-static t_bool	is_operator(t_token_status status)
+static int	pass_operator_index(t_token_status status)
 {
 	if (status == ST_LESS
 		|| status == ST_GREATER
@@ -65,7 +65,7 @@ t_status	tokenize_string(const char *str, t_list **token_list)
 		ft_lstadd_back(token_list, ft_lstnew(get_new_token(word, status)));
 		if (str[current_index] == '\0')
 			break ;
-		current_index += is_operator(status);
+		current_index += pass_operator_index(status);
 	}
 	return (SUCCESS);
 }
