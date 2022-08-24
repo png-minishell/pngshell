@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_strings.c                                     :+:      :+:    :+:   */
+/*   is_symbol.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/22 17:08:48 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/24 19:17:02 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/24 19:58:01 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/24 19:58:17 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "minishell_definitions.h"
+#include "libft.h"
 
-void	free_strings(char **strings)
+t_bool	is_symbol(const char c)
 {
-	size_t	index;
-
-	index = 0;
-	while (strings[index])
-	{
-		free(strings[index++]);
-	}
-	free(strings);
+	return (ft_isinset(c, SYMBOLS));
 }

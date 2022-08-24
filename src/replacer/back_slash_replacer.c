@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   back_slash_replacer.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parksungjun <sungjpar@student.42seoul      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:04:56 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/21 14:02:38 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:46:23 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,23 @@ char	replace_backslash(const char *str, size_t *index)
 	if (next_char == 0)
 		return ('\\');
 	if (next_char == 'a' && ++(*index))
-		return (7);
+		return ('\a');
+	if (next_char == '\\' && ++(*index))
+		return ('\\');
 	if (next_char == 'b' && ++(*index))
-		return (8);
+		return ('\b');
 	if (next_char == 't' && ++(*index))
-		return (9);
+		return ('\t');
 	if (next_char == 'n' && ++(*index))
-		return (10);
+		return ('\n');
 	if (next_char == 'v' && ++(*index))
-		return (11);
+		return ('\v');
 	if (next_char == 'f' && ++(*index))
-		return (12);
+		return ('\f');
 	if (next_char == 'r' && ++(*index))
-		return (13);
-	if (next_char == '"' && ++(*index))
-		return ('"');
-	if (next_char == '\'' && ++(*index))
-		return ('\'');
+		return ('\r');
+	if (next_char == '\"' && ++(*index))
+		return ('\"');
 	if (next_char == '$' && ++(*index))
 		return ('$');
 	return ('\\');

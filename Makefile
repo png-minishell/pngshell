@@ -6,7 +6,7 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/23 14:55:48 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/24 19:59:06 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			replacer/double_quote_replacer.c\
 			replacer/env_replacer.c\
 			replacer/get_replaced_string_size.c\
-			replacer/replace_backslash_and_copy_string.c\
+			replacer/copy_string.c\
 			replacer/replacer.c\
 			replacer/single_quote_replacer.c\
 			env_substituter/env_substituter.c\
@@ -74,6 +74,7 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			utils/find_execute_file_path.c\
 			utils/free_strings.c\
 			utils/free_token.c\
+			utils/is_symbol.c\
 			main.c\
 )
 

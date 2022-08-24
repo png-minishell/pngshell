@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:11:54 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 21:32:51 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:22:57 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "minishell_definitions.h"
 #include "error_control_functions.h"
 #include "parser.h"
+#include "replacer.h"
 #include "libft.h"
 
 size_t	get_number_of_arguments(t_btree_node *cmd_node)
@@ -32,6 +33,29 @@ size_t	get_number_of_arguments(t_btree_node *cmd_node)
 	return (num);
 }
 
+char	*double_quote_string_to_word(const char *str)
+{
+	char	*replaced_str;
+	size_t	idx_str;
+	size_t	idx_res;
+
+	idx_str = 0;
+	idx_res = 0;
+	replaced_str = e_malloc(sizeof(char) * (ft_strlen(str) + 1));
+	while (str[idx_str])
+	{
+		if (str[idx_str] == '\\')
+			replaced_str[idx_res] = replace_backslash(str + idx_str, &idx_str);
+		else
+			replaced_str[idx_res] = str[idx_str];
+		++idx_res;
+		if (str[idx_str++] == 0)
+			break ;
+	}
+	replaced_str[idx_res] = 0;
+	return (replaced_str);
+}
+
 char	**get_arguments(t_btree_node *cmd_node)
 {
 	const size_t	number_of_arguments = get_number_of_arguments(cmd_node);
@@ -46,7 +70,10 @@ char	**get_arguments(t_btree_node *cmd_node)
 	while (node)
 	{
 		token = node->content;
-		argv[index] = ft_strdup(token->str);
+		if (token->kind == TK_WORD_DOUBLE_QUOTE)
+			argv[index] = double_quote_string_to_word(token->str);
+		else
+			argv[index] = ft_strdup(token->str);
 		node = node->right_child;
 		++index;
 	}

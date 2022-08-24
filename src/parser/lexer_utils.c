@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:23:46 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/23 17:02:03 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:49:55 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_token_kind	get_token_kind(const t_token_status status)
 	if (status == ST_DOUBLE_QUOTE)
 		return (TK_WORD_DOUBLE_QUOTE);
 	if (status == ST_SINGLE_QUOTE)
-		return (TK_WORD_DOUBLE_QUOTE);
+		return (TK_WORD);
 	if (status == ST_PIPE)
 		return (TK_PIPE);
 	if (status == ST_CMD)
