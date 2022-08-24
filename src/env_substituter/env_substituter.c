@@ -71,7 +71,7 @@ char	*env_substituter(const char *str, char **envp, char **set)
 	while (str[index])
 	{
 		if (str[index] == '$'
-			&& str[index + 1]
+			&& str[index + 1] && !is_symbol(str[index + 1])
 			&& (!index || str[index - 1] != '\\'))
 		{
 			index += replace_env(str + index, result_string, &r_index);

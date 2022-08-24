@@ -25,8 +25,8 @@ int stdout_bak = 0;
 
 static void	print_main_page(void)
 {
-	ft_printf("%s", "\033[36m");
-	ft_printf(\
+	printf("%s", "\033[36m");
+	printf(\
 	"\n\
 	____  _   ________   _____ __  __________    __ \n\
 	/ __ \\/ | / / ____/  / ___// / / / ____/ /   / / \n\
@@ -34,13 +34,14 @@ static void	print_main_page(void)
 	/ ____/ /|  / /_/ /   ___/ / __  / /___/ /___/ /___\n\
 	/_/   /_/ |_/\\____/   /____/_/ /_/_____/_____/_____/\n\
 	\n");
-	ft_printf("\
-				%sby %sP%sark sungjun a%sN%sd lee min%sG%syu\n",
+	printf("\
+		\
+		%sby %sP%sark sungjun a%sN%sd lee min%sG%syu\n",
 		"\033[33m", "\033[36m",
 		"\033[33m", "\033[36m",
 		"\033[33m", "\033[36m",
 		"\033[33m");
-	ft_printf("\n\n%s", "\033[0m");
+	printf("\n\n%s", "\033[0m");
 }
 
 int	main(int argc, char **argv, char **env)

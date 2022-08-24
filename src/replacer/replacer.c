@@ -16,6 +16,11 @@
 #include "replacer.h"
 #include "libft.h"
 
+static t_bool	is_quote(const char c)
+{
+	return (c == '\'' || c == '"');
+}
+
 static void	scan_and_replace(\
 		const char *str, char *res)
 {
@@ -32,6 +37,8 @@ static void	scan_and_replace(\
 			single_quote_replacer(str + idx_str, res, &idx_str, &idx_res);
 		else if (str[idx_str] == '"')
 			double_quote_replacer(str + idx_str, res, &idx_str, &idx_res);
+		else if (str[idx_str] == '$' && is_quote(str[idx_str + 1]))
+			;
 		else if (str[idx_str] == '$' && str[idx_str + 1])
 			env_replacer(str + idx_str, res, &idx_str, &idx_res);
 		else

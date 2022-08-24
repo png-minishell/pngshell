@@ -17,6 +17,7 @@
 #include "error_control_functions.h"
 #include "minishell_definitions.h"
 #include "libft.h"
+#include "replacer.h"
 
 static void	write_list(const int fd, t_list *head)
 {
@@ -30,6 +31,7 @@ static void	write_list(const int fd, t_list *head)
 int	heredoc(const char *limiter)
 {
 	char			*line;
+	char			*replaced_line;
 	t_list			*head;
 	int				fds[2];
 
@@ -40,7 +42,10 @@ int	heredoc(const char *limiter)
 		line = readline("heredoc> ");
 		if (line == NULL || ft_strncmp(line, limiter, -1) == 0)
 			break ;
-		ft_lstadd_back(&head, ft_lstnew(ft_strjoin(line, "\n")));
+		replaced_line = replacer(line);
+		free(line);
+		ft_lstadd_back(&head, ft_lstnew(ft_strjoin(replaced_line, "\n")));
+		free(replaced_line);
 	}
 	write_list(fds[1], head);
 	ft_lstclear(&head, free);
