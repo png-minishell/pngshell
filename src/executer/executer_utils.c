@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:19:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/23 14:27:47 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:50:05 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,6 @@
 #include "error_control_functions.h"
 #include "executer.h"
 #include "libft.h"
-
-static t_cmd	get_cmd(t_btree_node *const cmd_node)
-{
-	const t_token	*token = cmd_node->content;
-	t_cmd			cmd;
-
-	cmd.path = token->str;
-	cmd.argv = token->arguments;
-	return (cmd);
-}
 
 size_t	get_number_of_pipe(t_btree_node *const ast)
 {
@@ -49,23 +39,22 @@ t_token_kind	get_node_token_kind(t_btree_node *node)
 	return (((t_token *)(node->content))->kind);
 }
 
-t_status	do_token_purpose(t_btree_node *node, t_cmd *cmd)
+t_status	do_token_purpose(t_btree_node *node)
 {
 	const t_token_kind	kind = get_node_token_kind(node);
 	t_token				*r_token;
 
+	r_token = NULL;
 	if (node->right_child)
 		r_token = node->right_child->content;
-	if (kind == TK_CMD)
-		*cmd = get_cmd(node);
-	else if (kind == TK_LESS)
+	if (kind == TK_LESS && r_token)
 		do_infile_redirection(r_token->str);
-	else if (kind == TK_GREATER)
+	else if (kind == TK_GREATER && r_token)
 		do_outfile_redirection(\
 			r_token->str, O_WRONLY | O_TRUNC | O_CREAT, 0644);
-	else if (kind == TK_DOUBLE_LESS)
+	else if (kind == TK_DOUBLE_LESS && r_token)
 		do_heredoc_redirection(r_token->pipe_fd);
-	else if (kind == TK_DOUBLE_GREATER)
+	else if (kind == TK_DOUBLE_GREATER && r_token)
 		do_outfile_redirection(\
 			r_token->str, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	return (SUCCESS);
