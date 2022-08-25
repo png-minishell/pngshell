@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:20:38 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/25 17:22:06 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:53:09 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		}
 		ast = create_ast_tree_from_string(user_cmd);
+		run_heredoc(ast);
 		if (check_valid_ast(ast) == SUCCESS)
 		{
-			run_heredoc(ast);
 			execute_commands_from_ast(ast);
 		}
 		else

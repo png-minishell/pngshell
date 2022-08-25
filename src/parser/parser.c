@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:54:59 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/25 17:26:47 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:46:46 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 #include "binary_tree.h"
 #include "parser.h"
 #include "lexer.h"
+
+static t_bool	is_link_right_case(t_token *prev, t_token *cur)
+{
+	return (
+		cmp_kind(*prev, *cur) > 0
+		|| (get_token_type(*prev) == TYPE_WORD
+			&& get_token_type(*cur) == TYPE_WORD)
+	);
+}
 
 static void	insert_node(t_btree_node *current_node, t_btree_node *new_node)
 {
@@ -49,7 +58,7 @@ t_btree_node	*create_token_ast_from_tokens(t_token *tokens)
 		if (current_node != NULL)
 		{
 			current_node_token = (t_token *)current_node->content;
-			if (cmp_kind(*current_node_token, tokens[index]) >= 0)
+			if (is_link_right_case(current_node_token, &tokens[index]))
 				bst_link_right_child(current_node, new_node);
 			else
 			{
