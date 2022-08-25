@@ -6,7 +6,7 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/24 19:59:06 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/25 17:17:51 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,13 +46,15 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			error_control_functions/e_malloc.c\
 			error_control_functions/e_open.c\
 			error_control_functions/e_pipe.c\
+			executer/analyze_and_execute_command.c\
 			executer/executer.c\
 			executer/executer_node_utils.c\
 			executer/executer_token_funcs.c\
 			executer/executer_utils.c\
+			executer/explore_tree_and_execute_command.c\
 			executer/pipe_utils.c\
 			executer/run_heredoc.c\
-			executer/run_commands.c\
+			executer/run_command.c\
 			heredoc/heredoc.c\
 			parser/index_skip_functions.c\
 			parser/check_valid_ast.c\

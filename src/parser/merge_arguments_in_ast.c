@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:11:54 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/24 19:22:57 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:21:11 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,12 @@ char	**get_arguments(t_btree_node *cmd_node)
 void	find_cmd_and_merge_arguments(t_btree_node *root)
 {
 	t_token	*token;
-	char	*path;
 
 	if (root == NULL)
 		return ;
 	token = root->content;
 	if (token->kind == TK_CMD)
 	{
-		path = find_execute_file_path(token->str);
-		if (path == NULL)
-			path = ft_strdup("");
-		free(token->str);
-		token->str = path;
 		token->arguments = get_arguments(root);
 		if (root->right_child)
 			bst_clear_tree(root->right_child, free_token);

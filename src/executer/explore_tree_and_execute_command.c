@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_commands.c                                     :+:      :+:    :+:   */
+/*   explore_tree_and_execute_command.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 21:02:54 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/23 15:26:56 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:19:15 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,38 +18,6 @@
 #include "error_control_functions.h"
 #include "executer.h"
 #include "libft.h"
-
-static t_status	do_command(t_btree_node *const left_leaf)
-{
-	t_btree_node	*node;
-	t_cmd			cmd;
-
-	node = left_leaf;
-	cmd.path = NULL;
-	cmd.argv = NULL;
-	while (get_node_token_kind(node) != TK_PIPE)
-	{
-		do_token_purpose(node, &cmd);
-		node = node->parent;
-		if (node == NULL)
-			break ;
-	}
-	if (cmd.path == NULL)
-	{
-		char	buf[1001];
-		int		read_size;
-
-		while ((read_size = read(STDIN_FILENO, buf, 1000)) > 0)
-		{
-			buf[read_size] = 0;
-			write(STDOUT_FILENO, buf, read_size);
-		}
-		return (SUCCESS);
-	}
-	if (execve(cmd.path, cmd.argv, envp) != SUCCESS)
-		perror(cmd.path); // NULL -> envp is global envp..
-	return (SUCCESS);
-}
 
 static void	close_unused_pipe(\
 	int no_cmd, int pipelines[2][2])
@@ -76,7 +44,7 @@ static pid_t	build_pipe_and_fork(
 	return (pid);
 }
 
-void	run_commands(\
+void	explore_tree_and_execute_command(\
 	t_btree_node *ast, pid_t *pid, const size_t number_of_process)
 {
 	size_t			index;
@@ -93,7 +61,7 @@ void	run_commands(\
 		if (pid[index] == 0)
 		{
 			set_pipe(index, number_of_process, pipelines);
-			do_command(left_leaf);
+			analyze_and_execute_command(left_leaf);
 			exit(errno);
 		}
 		if (root->right_child)

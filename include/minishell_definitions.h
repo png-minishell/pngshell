@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/24 20:00:13 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:27:23 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,6 @@ typedef struct s_token
 	t_token_kind	kind;
 	int				pipe_fd;
 }	t_token;
-
-typedef struct s_cmd
-{
-	char	*path;
-	char	**argv;
-}	t_cmd;
 
 extern char	**envp;
 extern char	**set;

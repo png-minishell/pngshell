@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:08:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 21:51:08 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:07:56 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_status	execute_commands_from_ast(t_btree_node *ast)
 	pid_t			*pid;
 
 	pid = e_malloc(sizeof(pid_t) * number_of_process);
-	run_commands(ast, pid, number_of_process);
+	explore_tree_and_execute_command(ast, pid, number_of_process);
 	wait_childs(pid, number_of_process);
 	free(pid);
 	return (SUCCESS);
