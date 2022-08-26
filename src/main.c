@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:20:38 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/25 17:53:09 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:54:15 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			ft_putendl_fd("shell : syntax error", STDERR_FILENO);
 		}
+		add_history(user_cmd);
 		bst_clear_tree(ast, free_token);
 		free(user_cmd);
 	}
