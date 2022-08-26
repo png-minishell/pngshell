@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:07:36 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/26 16:05:52 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:29:18 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*get_excute_file_path(char *command, char **path)
 	}
 	return (0);
 }
-/*
+
 static t_bool	check_builtin(char *command_name)
 {
 	if (ft_strncmp("echo", command_name, -1))
@@ -53,13 +53,12 @@ static t_bool	check_builtin(char *command_name)
 		return (TRUE);
 	return (FALSE);
 }
-*/
-/*
+
 static char	*get_builtin_path(char *command_name)
 {
 	
 }
-*/
+
 char	**get_paths(void)
 {
 	char	*value;
