@@ -3,41 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mingylee <mingylee@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:00:59 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 18:10:11 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/29 19:28:30 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_definitions.h"
 
-void	unset_envp(char *arguments, char **envp)
+void	unset_envp(char *argument, char **envp)
 {
-	int	envp_index;
+	int		idx_envp;
+	char	*key;
 
-	envp_index = get_envp_index(get_key(arguments), envp);
-	if (envp_index == -1)
+	key = get_key(argument);
+	idx_envp = get_envp_index(key, envp);
+	free(key);
+	if (idx_envp == -1)
 		return ;
-	while (envp[envp_index])
+	while (envp[idx_envp])
 	{
-		envp[envp_index] = envp[envp_index + 1];
-		envp_index++;
+		envp[idx_envp] = envp[idx_envp + 1];
+		idx_envp++;
 	}
 }
 
 int	builtin_unset(const char *str, char **arguments, char **envp)
 {
-	int	arg_index;
+	int	idx_arg;
 
-	arg_index = 1;
-	// unset 만 입력 했을 때 무슨 동작 하는지 모르겠음... 아마 아무 동작 안하는거 같음
+	idx_arg = 1;
 	if (arguments[1] == 0)
 		return (FAILED);
-	while (arguments[arg_index])
+	while (arguments[idx_arg])
 	{
-		unset_envp(arguments[arg_index], envp);
-		arg_index++;
+		unset_envp(arguments[idx_arg], envp);
+		idx_arg++;
 	}
 	return (SUCCESS);
 }

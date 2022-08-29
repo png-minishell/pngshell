@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:07:36 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 16:36:28 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/29 19:36:40 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,21 @@ static char	*get_excute_file_path(char *command, char **path)
 	return (0);
 }
 
-int	check_builtin(const char *command_name)	
+int	check_builtin(const char *command_name)
 {
 	if (ft_strncmp("echo", command_name, -1) == 0)
 		return (BT_ECHO);
-	else if(ft_strncmp("cd", command_name, -1) == 0)
+	else if (ft_strncmp("cd", command_name, -1) == 0)
 		return (BT_CD);
-	else if(ft_strncmp("pwd", command_name, -1) == 0)
+	else if (ft_strncmp("pwd", command_name, -1) == 0)
 		return (BT_PWD);
-	else if(ft_strncmp("export", command_name, -1) == 0)
+	else if (ft_strncmp("export", command_name, -1) == 0)
 		return (BT_EXPORT);
-	else if(ft_strncmp("unset", command_name, -1) == 0)
+	else if (ft_strncmp("unset", command_name, -1) == 0)
 		return (BT_UNSET);
-	else if(ft_strncmp("env", command_name, -1) == 0)
+	else if (ft_strncmp("env", command_name, -1) == 0)
 		return (BT_ENV);
-	else if(ft_strncmp("exit", command_name, -1) == 0)
+	else if (ft_strncmp("exit", command_name, -1) == 0)
 		return (BT_EXIT);
 	return (BT_NONE);
 }

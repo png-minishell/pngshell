@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/29 19:13:31 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/29 19:36:11 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ t_btree_node	*create_ast_tree_from_string(const char *str);
 int				heredoc(const char *limiter);
 void			run_heredoc(t_btree_node *ast);
 t_status		execute_commands_from_ast(t_btree_node *ast);
-int				what_is_this_file(char *file, struct stat *file_buf);
+int				get_file_type(char *file, struct stat *file_buf);
 int				check_permission(char *absolute_path);
 char			*find_execute_file_path(char *command_name);
 void			free_strings(char **strings);

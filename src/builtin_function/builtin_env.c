@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mingylee <mingylee@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:10:35 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 18:12:07 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/29 19:27:58 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 int	builtin_env(char **envp)
 {
-	int	envp_index;
+	int	idx_envp;
 
-	envp_index = 0;
-	while (envp[envp_index])
+	idx_envp = 0;
+	while (envp[idx_envp])
 	{
-		printf("%s\n", envp[envp_index]);
-		envp_index++;
+		printf("%s\n", envp[idx_envp]);
+		idx_envp++;
 	}
 	return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mingylee <mingylee@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:46:16 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 18:59:37 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/29 19:39:20 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,57 +26,61 @@ static void	ft_swap(char **s1, char **s2)
 
 static void	sorting_envp(char **envp)
 {
-	int		envp_index;
-	int		sorting_i;
-	int		sorting_j;
+	int		idx_cur;
+	int		idx_target;
 	char	**temp_envp;
 
 	temp_envp = envp;
-	sorting_i = 0;
-	while (envp[sorting_i])
+	idx_cur = 0;
+	while (envp[idx_cur])
 	{
-		sorting_j = sorting_i + 1;
-		while (envp[sorting_j])
+		idx_target = idx_cur + 1;
+		while (envp[idx_target])
 		{
-			if (ft_strncmp(envp[sorting_i], envp[sorting_j], -1) > 0)
-				ft_swap(&envp[sorting_i], &envp[sorting_j]);
-			sorting_j++;
+			if (ft_strncmp(envp[idx_cur], envp[idx_target], -1) > 0)
+				ft_swap(&envp[idx_cur], &envp[idx_target]);
+			idx_target++;
 		}
-		sorting_i++;
+		idx_cur++;
 	}
-	while (envp[envp_index])
+}
+
+static void	print_envp(char **envp)
+{
+	int		idx_envp;
+
+	idx_envp = 0;
+	while (envp[idx_envp])
 	{
-		printf("%s\n", envp[envp_index]);
-		envp_index++;
+		printf("%s\n", envp[idx_envp]);
+		idx_envp++;
 	}
 }
 
 void	exporting_envp(char **arguments, char **envp)
 {
-	int		arg_index;
+	int		idx_arg;
 	char	*key;
 	char	*value;
 
-	arg_index = 1;
-	while (arguments[arg_index])
+	idx_arg = 1;
+	while (arguments[idx_arg])
 	{
-		key = get_key(arguments[arg_index]);
-		value = ft_strchr(arguments[arg_index], '=') + 1;
+		key = get_key(arguments[idx_arg]);
+		value = ft_strchr(arguments[idx_arg], '=') + 1;
 		change_envp_value(key, value, envp);
 		free(key);
 		free(value);
-		arg_index++;
+		idx_arg++;
 	}
 }
-
-// export 입력 시 정렬된 environment 출력
-// 인자가 여러개 들어와도 다 바꿈
 
 int	builtin_export(const char *str, char **arguments, char **envp)
 {
 	if (arguments[1] == NULL)
 	{
 		sorting_envp(envp);
+		print_envp(envp);
 		return (SUCCESS);
 	}
 	else

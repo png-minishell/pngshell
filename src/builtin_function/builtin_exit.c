@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mingylee <mingylee@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:12:28 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 19:02:30 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/29 19:32:24 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,42 @@
 
 static int	is_digit_only(char *str)
 {
-	int	str_index;
+	int	idx_str;
 
-	str_index = 0;
-	while (str[str_index])
+	idx_str = 0;
+	while (str[idx_str])
 	{
-		if (!ft_isdigit(str[str_index]))
+		if (!ft_isdigit(str[idx_str]))
 			return (FALSE);
-		str_index++;
+		idx_str++;
 	}
 	return (TRUE);
 }
 
 int	builtin_exit(const char *str, char **arguments, char **envp)
 {
-	int	arg_index;
+	int	idx_arg;
 	int	atoi_value;
 
 	if (arguments[1] == NULL)
-	{
 		exit(1);
-	}
-	arg_index = 1;
-	if (!is_digit_only(arguments[1])) // 숫자 외에 딴게 들어왔을경우
+	if (!is_digit_only(arguments[1]))
 	{
+		ft_putstr_fd("shell: exit: ", 2);
+		ft_putstr_fd(arguments[1], 2);
+		ft_putendl_fd(": numeric argument required", 2);
 		exit(255);
 	}
-	while (arguments[arg_index])
+	idx_arg = 1;
+	while (arguments[idx_arg])
 	{
-		atoi_value = ft_atoi(arguments[arg_index]);
-		arg_index++;
+		atoi_value = ft_atoi(arguments[idx_arg]);
+		idx_arg++;
 	}
-	if (arg_index > 1)
+	if (idx_arg > 1)
+	{
+		ft_putendl_fd("shell: exit: too many arguments", 2);
 		return (FAILED);
+	}
 	exit((unsigned char)atoi_value);
 }
