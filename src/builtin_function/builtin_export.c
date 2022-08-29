@@ -6,12 +6,14 @@
 /*   By: mingylee <mingylee@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:46:16 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 18:00:28 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/29 18:59:37 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <stdio.h>
 #include "minishell_definitions.h"
+#include "libft.h"
 
 static void	ft_swap(char **s1, char **s2)
 {
@@ -36,7 +38,7 @@ static void	sorting_envp(char **envp)
 		sorting_j = sorting_i + 1;
 		while (envp[sorting_j])
 		{
-			if (ft_strncmp(envp[sorting_i], envp[sorting_j]) > 0)
+			if (ft_strncmp(envp[sorting_i], envp[sorting_j], -1) > 0)
 				ft_swap(&envp[sorting_i], &envp[sorting_j]);
 			sorting_j++;
 		}
@@ -51,16 +53,19 @@ static void	sorting_envp(char **envp)
 
 void	exporting_envp(char **arguments, char **envp)
 {
-	int		i;
+	int		arg_index;
 	char	*key;
+	char	*value;
 
-	i = 1;
-	while (arguments[i])
+	arg_index = 1;
+	while (arguments[arg_index])
 	{
-		key = get_key(arguments[i]);
-		value = ft_strchar(arguments[i], '=') + 1;
+		key = get_key(arguments[arg_index]);
+		value = ft_strchr(arguments[arg_index], '=') + 1;
 		change_envp_value(key, value, envp);
-		i++;
+		free(key);
+		free(value);
+		arg_index++;
 	}
 }
 

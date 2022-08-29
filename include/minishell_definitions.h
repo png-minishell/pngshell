@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/29 17:40:57 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/29 19:13:31 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ t_status		check_valid_ast(t_btree_node *ast);\
 t_bool			is_symbol(const char c);
 int				check_builtin(const char *command_name);
 t_status		run_builtin(const char *str, char **arguments, char **envp);
+int				get_envp_index(char *key, char **envp);
 int				builtin_cd(const char *str, char **arguments, char **envp);
 
 # define HEREDOC_FILE_NAME ".heredoc.tmp"
