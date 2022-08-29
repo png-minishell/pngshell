@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 19:38:29 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 21:52:40 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:05:36 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,36 @@ char	*get_key(const char *str)
 		++index;
 	}
 	return (ft_substr(str + 1, 0, index - 1));
+}
+
+int	get_envp_index(const char *key, char **envp)
+{
+	int		index;
+
+	index = 0;
+	while (envp[index])
+	{
+		if (ft_strncmp(key, envp[index], ft_strlen(key)))
+			return (index);
+		index++;
+	}
+	return (-1);
+}
+
+char	**change_envp_value(const char *key, const char *value, char **envp)
+{
+	int	index;
+
+	index = get_envp_index(key, envp);
+	if (index != -1)
+	{
+		while (envp[index])
+		{
+			envp[index] = envp[index + 1];
+			index++;
+		}
+		envp[index] = ft_strjoin(key, value);
+		envp[index + 1] = 0;
+	}
+	return (0);
 }

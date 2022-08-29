@@ -6,7 +6,7 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/25 17:17:51 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/29 16:15:25 by mingylee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			utils/free_strings.c\
 			utils/free_token.c\
 			utils/is_symbol.c\
+			builtin_function/builtin_cd.c\
 			main.c\
 )
 
