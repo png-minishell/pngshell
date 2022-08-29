@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:12:28 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 19:32:24 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/29 20:20:41 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	is_digit_only(char *str)
 	return (TRUE);
 }
 
-int	builtin_exit(const char *str, char **arguments, char **envp)
+int	builtin_exit(char **arguments)
 {
 	int	idx_arg;
 	int	atoi_value;

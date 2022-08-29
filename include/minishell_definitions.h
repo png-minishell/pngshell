@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/29 19:36:11 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/29 20:21:30 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ extern int	stdout_bak;
 char			*get_value(const char *key, char **envp, char **set);
 char			*get_key(const char *str);
 char			*env_substituter(const char *str, char **envp, char **set);
-char			**change_envp_value(const char *key, const char *value, char **envp);
+char			**change_envp_value(\
+					const char *key, const char *value, char **envp);
 char			*replacer(const char *str);
 t_btree_node	*create_ast_tree_from_string(const char *str);
 int				heredoc(const char *limiter);
@@ -111,12 +112,18 @@ int				check_permission(char *absolute_path);
 char			*find_execute_file_path(char *command_name);
 void			free_strings(char **strings);
 void			free_token(void *ptr);
-t_status		check_valid_ast(t_btree_node *ast);\
+t_status		check_valid_ast(t_btree_node *ast);
 t_bool			is_symbol(const char c);
 int				check_builtin(const char *command_name);
-t_status		run_builtin(const char *str, char **arguments, char **envp);
-int				get_envp_index(char *key, char **envp);
-int				builtin_cd(const char *str, char **arguments, char **envp);
+int				get_envp_index(const char *key, char **envp);
+/* BULITIN FUNCTIONS */
+int				builtin_cd(char **arguments, char **envp);
+int				builtin_env(char **envp);
+int				builtin_exit(char **arguments);
+int				builtin_export(char **arguments, char **envp);
+int				builtin_pwd(void);
+int				builtin_unset(char **arguments, char **envp);
+
 
 # define HEREDOC_FILE_NAME ".heredoc.tmp"
 # define SYMBOLS "$<>|\'\"\\"

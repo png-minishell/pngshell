@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:46:16 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 19:39:20 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/29 20:21:07 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	exporting_envp(char **arguments, char **envp)
 	}
 }
 
-int	builtin_export(const char *str, char **arguments, char **envp)
+int	builtin_export(char **arguments, char **envp)
 {
 	if (arguments[1] == NULL)
 	{

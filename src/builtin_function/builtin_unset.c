@@ -6,10 +6,11 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:00:59 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 19:28:30 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/29 20:21:27 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "minishell_definitions.h"
 
 void	unset_envp(char *argument, char **envp)
@@ -29,7 +30,7 @@ void	unset_envp(char *argument, char **envp)
 	}
 }
 
-int	builtin_unset(const char *str, char **arguments, char **envp)
+int	builtin_unset(char **arguments, char **envp)
 {
 	int	idx_arg;
 

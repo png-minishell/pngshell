@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:02:20 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 19:38:30 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/29 20:23:59 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 #include <errno.h>
 #include <stdlib.h>
 #include "minishell_definitions.h"
+#include "libft.h"
 
-int	builtin_cd(const char *str, char **arguments, char **envp)
+int	builtin_cd(char **arguments, char **envp)
 {
 	char		*now_dir;
 	struct stat	buf;
