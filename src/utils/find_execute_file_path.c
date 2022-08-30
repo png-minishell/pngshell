@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:07:36 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 19:36:40 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:02:56 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ static char	*get_excute_file_path(char *command, char **path)
 
 int	check_builtin(const char *command_name)
 {
-	if (ft_strncmp("echo", command_name, -1) == 0)
-		return (BT_ECHO);
-	else if (ft_strncmp("cd", command_name, -1) == 0)
+	if (ft_strncmp("cd", command_name, -1) == 0)
 		return (BT_CD);
 	else if (ft_strncmp("pwd", command_name, -1) == 0)
 		return (BT_PWD);
@@ -59,7 +57,7 @@ char	**get_paths(void)
 	char	*value;
 	char	**path;
 
-	value = get_value("PATH", envp, 0);
+	value = get_value("PATH", g_vars.envp, 0);
 	path = ft_split(value, ':');
 	free(value);
 	return (path);
@@ -75,6 +73,8 @@ char	*find_execute_file_path(char *command_name)
 	path_index = 0;
 	if (check_permission(command_name))
 		return (ft_strdup(command_name));
+	if (ft_strncmp("echo", command_name, -1) == 0)
+		return (ft_strjoin(g_vars.cwd, "/builtin_programs/echo/echo"));
 	command = ft_strjoin("/", command_name);
 	path = get_paths();
 	excute_file = get_excute_file_path(command, path);

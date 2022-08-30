@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:12:28 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 20:20:41 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:38:52 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 #include <stdlib.h>
 #include "minishell_definitions.h"
 #include "libft.h"
-
-// exit 는 개같은 함수다.
-// 이유는
-// exit 1 2 3 4 는too many arguments가 뜨고 종료 되지 않지만
-// exit 1a 2 3 4 는 numeric arguments required로 종료 된다
-// 따라서 첫번째 인자의 numeric만 체크하고 이후에 다른걸 체크한다.
 
 static int	is_digit_only(char *str)
 {

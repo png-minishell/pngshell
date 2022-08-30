@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 18:36:44 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/24 20:02:11 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:41:46 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_env_string(const char *str)
 	{
 		++idx_str;
 	}
-	return (ft_substr(str, 0, idx_str ));
+	return (ft_substr(str, 0, idx_str));
 }
 
 static void	replace_bakslash_and_copy_string(\
@@ -57,7 +57,7 @@ void	env_replacer(\
 	char	*double_quoted_str;
 
 	env_str = get_env_string(str);
-	env_replaced_str = env_substituter(env_str, envp, set);
+	env_replaced_str = env_substituter(env_str, g_vars.envp, g_vars.set);
 	tmp = ft_strjoin("\"", env_replaced_str);
 	double_quoted_str = ft_strjoin(tmp, "\"");
 	replace_bakslash_and_copy_string(double_quoted_str, res, idx_res);

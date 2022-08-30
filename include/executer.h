@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:19:29 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/29 20:17:51 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:12:19 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ t_status		analyze_and_execute_command(t_btree_node *const left_leaf);
 t_status		run_command(t_token *cmd_token);
 t_btree_node	*get_left_leaf(t_btree_node *const root);
 t_btree_node	*get_next_root(t_btree_node *const left_leaf);
+t_builtin_kind	get_builtin_kind(const char *str);
 
 t_status		do_infile_redirection(const char *path);
 t_status		do_outfile_redirection(const char *path, int flag, int mode);
 t_status		do_heredoc_redirection(const int fd);
 
+void			execute_builtin_cmd(t_token *token);
 void			explore_tree_and_execute_command(\
 					t_btree_node *ast,
 					pid_t *pid, const size_t number_of_process);

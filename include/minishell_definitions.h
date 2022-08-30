@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/29 20:21:30 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:00:05 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <sys/stat.h>
 # include "binary_tree.h"
+
+# define SYMBOLS "$<>|\'\"\\"
 
 # define FAILED -1
 # define SUCCESS 0
@@ -91,11 +93,29 @@ typedef struct s_token
 	t_token_kind	kind;
 	int				pipe_fd;
 }	t_token;
+/* FILE TYPE DEFINE */
+typedef enum e_file_types
+{
+	TYPE_FIFO = -128,
+	TYPE_CHR,
+	TYPE_DIRECTORY,
+	TYPE_BLOCK,
+	TYPE_REGULAR,
+	TYPE_LINK,
+	TYPE_SOCKET,
+}	t_file_types;
 
-extern char	**envp;
-extern char	**set;
-extern int	stdin_bak;
-extern int	stdout_bak;
+typedef struct s_program_variables
+{
+	char	**envp;
+	char	**set;
+	char	*cwd;
+	int		stdin_bak;
+	int		stdout_bak;
+	int		exit_code;
+}	t_program_variables;
+
+extern t_program_variables		g_vars;
 
 char			*get_value(const char *key, char **envp, char **set);
 char			*get_key(const char *str);
@@ -123,18 +143,5 @@ int				builtin_exit(char **arguments);
 int				builtin_export(char **arguments, char **envp);
 int				builtin_pwd(void);
 int				builtin_unset(char **arguments, char **envp);
-
-
-# define HEREDOC_FILE_NAME ".heredoc.tmp"
-# define SYMBOLS "$<>|\'\"\\"
-
-/* FILE TYPE DEFINE */
-# define TYPE_FIFO		0
-# define TYPE_CHR		1
-# define TYPE_DIRECTORY	2
-# define TYPE_BLOCK		3
-# define TYPE_REGULAR	4
-# define TYPE_LINK		5
-# define TYPE_SOCKET	6
 
 #endif

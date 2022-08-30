@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:39:22 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/24 19:52:16 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:30:49 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	double_quote_replacer(\
 	char	*env_replaced_str;
 
 	double_quote_str = get_double_quote_string(str);
-	env_replaced_str = env_substituter(double_quote_str, envp, set);
+	env_replaced_str = \
+		env_substituter(double_quote_str, g_vars.envp, g_vars.set);
 	copy_string(env_replaced_str, res, idx_res);
 	*idx_str += ft_strlen(double_quote_str) - 1;
 	free(double_quote_str);

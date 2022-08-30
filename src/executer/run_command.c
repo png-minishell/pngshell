@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:10:45 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/29 20:23:23 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:49:53 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,13 @@ t_status	run_command(t_token *cmd_token)
 		return (FAILED);
 	free(cmd_token->str);
 	cmd_token->str = path;
-	if (execve(cmd_token->str, cmd_token->arguments, envp) != SUCCESS)
+	if (get_builtin_kind(cmd_token->str) != BT_NONE)
+		execute_builtin_cmd(cmd_token);
+	else if (execve(\
+		cmd_token->str, cmd_token->arguments, g_vars.envp) != SUCCESS)
+	{
 		perror(NULL);
+		return (errno);
+	}
 	return (SUCCESS);
 }
