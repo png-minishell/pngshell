@@ -3,26 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   get_option.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:13:01 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/15 15:35:02 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:36:43 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "echo.h"
 
-static t_bool	strcmp(const char *s1, const char *s2)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned int	idx;
+	size_t	idx_byte;
 
-	idx = 0;
-	while (s1[idx] && s2[idx] && (s1[idx] == s2[idx]))
+	idx_byte = 0;
+	while ((s1[idx_byte] || s2[idx_byte]) && idx_byte < n)
 	{
-		++idx;
+		if (s1[idx_byte] != s2[idx_byte])
+			return ((unsigned char) s1[idx_byte] - \
+					(unsigned char) s2[idx_byte]);
+		++idx_byte;
 	}
-	return (s1[idx] - s2[idx]);
+	return (0);
 }
 
 t_option	get_option(int argc, char *argv[])
@@ -31,7 +34,7 @@ t_option	get_option(int argc, char *argv[])
 		return (DEFAULT);
 	else
 	{
-		if (strcmp("-n", argv[1]) == 0)
+		if (ft_strncmp("-n", argv[1], 2) == 0)
 			return (N_MODE);
 		else
 			return (DEFAULT);

@@ -1,38 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_command.c                                      :+:      :+:    :+:   */
+/*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/25 17:10:45 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 16:49:53 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/29 18:00:59 by mingylee          #+#    #+#             */
+/*   Updated: 2022/08/29 20:21:27 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <stdio.h>
 #include "minishell_definitions.h"
-#include "executer.h"
 
-t_status	run_command(t_token *cmd_token)
+void	unset_envp(char *argument, char **envp)
 {
-	char	*path;
+	int		idx_envp;
+	char	*key;
 
-	path = find_execute_file_path(cmd_token->str);
-	if (path == NULL)
-		return (FAILED);
-	free(cmd_token->str);
-	cmd_token->str = path;
-	if (get_builtin_kind(cmd_token->str) != BT_NONE)
-		execute_builtin_cmd(cmd_token);
-	else if (execve(\
-		cmd_token->str, cmd_token->arguments, g_vars.envp) != SUCCESS)
+	key = get_key(argument);
+	idx_envp = get_envp_index(key, envp);
+	free(key);
+	if (idx_envp == -1)
+		return ;
+	while (envp[idx_envp])
 	{
-		perror(NULL);
-		return (errno);
+		envp[idx_envp] = envp[idx_envp + 1];
+		idx_envp++;
+	}
+}
+
+int	builtin_unset(char **arguments, char **envp)
+{
+	int	idx_arg;
+
+	idx_arg = 1;
+	if (arguments[1] == 0)
+		return (FAILED);
+	while (arguments[idx_arg])
+	{
+		unset_envp(arguments[idx_arg], envp);
+		idx_arg++;
 	}
 	return (SUCCESS);
 }

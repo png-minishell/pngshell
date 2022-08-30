@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:19:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/25 17:50:05 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:28:56 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,40 @@ t_status	do_token_purpose(t_btree_node *node)
 		do_outfile_redirection(\
 			r_token->str, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	return (SUCCESS);
+}
+
+t_builtin_kind	get_builtin_kind(const char *str)
+{
+	if (ft_strncmp(str, "cd", -1) == 0)
+		return (BT_CD);
+	else if (ft_strncmp(str, "env", -1) == 0)
+		return (BT_ENV);
+	else if (ft_strncmp(str, "exit", -1) == 0)
+		return (BT_EXIT);
+	else if (ft_strncmp(str, "export", -1) == 0)
+		return (BT_EXPORT);
+	else if (ft_strncmp(str, "pwd", -1) == 0)
+		return (BT_PWD);
+	else if (ft_strncmp(str, "unset", -1) == 0)
+		return (BT_UNSET);
+	else
+		return (BT_NONE);
+}
+
+void	execute_builtin_cmd(t_token *token)
+{
+	if (get_builtin_kind(token->str) == BT_CD)
+		builtin_cd(token->arguments, g_vars.envp);
+	else if (get_builtin_kind(token->str) == BT_PWD)
+		builtin_pwd();
+	else if (get_builtin_kind(token->str) == BT_EXPORT)
+		builtin_export(token->arguments, g_vars.envp);
+	else if (get_builtin_kind(token->str) == BT_UNSET)
+		builtin_unset(token->arguments, g_vars.envp);
+	else if (get_builtin_kind(token->str) == BT_ENV)
+		builtin_env(g_vars.envp);
+	else if (get_builtin_kind(token->str) == BT_EXIT)
+		builtin_exit(token->arguments);
+	else
+		return ;
 }

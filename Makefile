@@ -6,7 +6,7 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/25 17:17:51 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/30 15:44:45 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,13 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			utils/free_strings.c\
 			utils/free_token.c\
 			utils/is_symbol.c\
+			utils/change_envp_value.c\
+			builtin_function/builtin_cd.c\
+			builtin_function/builtin_env.c\
+			builtin_function/builtin_exit.c\
+			builtin_function/builtin_export.c\
+			builtin_function/builtin_pwd.c\
+			builtin_function/builtin_unset.c\
 			main.c\
 )
 

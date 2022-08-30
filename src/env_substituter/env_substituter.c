@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 16:32:46 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/22 21:07:05 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:31:46 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ size_t	replace_env(\
 	size_t	len;
 
 	key = get_key(str);
-	value = get_value(key, envp, set);
+	value = get_value(key, g_vars.envp, g_vars.set);
 	ft_strlcpy(result_string + *r_index, value, ft_strlen(value) + 1);
 	*r_index += ft_strlen(value);
 	len = ft_strlen(key);

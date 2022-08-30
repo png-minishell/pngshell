@@ -6,10 +6,11 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:08:41 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/25 17:21:21 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:53:33 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "minishell_definitions.h"
 #include "executer.h"
 #include "libft.h"
@@ -40,6 +41,9 @@ t_status	analyze_and_execute_command(t_btree_node *const left_leaf)
 	if (cmd_node == NULL)
 		return (SUCCESS);
 	if (run_command(cmd_node->content) == FAILED)
+	{
 		put_no_cmd_err(cmd_node->content);
+		exit(127);
+	}
 	return (SUCCESS);
 }

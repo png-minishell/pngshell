@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:26:28 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/23 15:02:10 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:33:20 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_status	do_infile_redirection(const char *path)
 	int	fd;
 
 	if (path[0] == 0)
-		e_dup2(stdin_bak, STDIN_FILENO);
+		e_dup2(g_vars.stdin_bak, STDIN_FILENO);
 	else
 	{
 		fd = e_open(path, O_RDONLY, 0644);

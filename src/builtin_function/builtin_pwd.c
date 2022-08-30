@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_replaced_string_size.c                         :+:      :+:    :+:   */
+/*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mingylee <mingylee@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/20 17:51:47 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/30 15:31:09 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/29 17:41:45 by mingylee          #+#    #+#             */
+/*   Updated: 2022/08/29 18:57:02 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "minishell_definitions.h"
-#include "replacer.h"
-#include "libft.h"
 
-size_t	get_replaced_string_size(const char *str)
+int	builtin_pwd(void)
 {
-	char	*env_replaced_str;
-	size_t	size;
+	char	*buf;
 
-	env_replaced_str = env_substituter(str, g_vars.envp, g_vars.set);
-	size = ft_strlen(env_replaced_str) + ft_strlen(str);
-	free(env_replaced_str);
-	return (size);
+	buf = getcwd(NULL, 0);
+	if (buf)
+	{
+		printf("%s\n", buf);
+		free(buf);
+		return (SUCCESS);
+	}
+	return (FAILED);
 }

@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/25 17:27:23 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:00:05 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <sys/stat.h>
 # include "binary_tree.h"
+
+# define SYMBOLS "$<>|\'\"\\"
 
 # define FAILED -1
 # define SUCCESS 0
@@ -72,6 +74,18 @@ typedef enum e_token_status
 	ST_END = 126,
 }	t_token_status;
 
+typedef enum e_builtin_kind
+{
+	BT_NONE = 0,
+	BT_ECHO,
+	BT_CD,
+	BT_PWD,
+	BT_EXPORT,
+	BT_UNSET,
+	BT_ENV,
+	BT_EXIT,
+}	t_builtin_kind;
+
 typedef struct s_token
 {
 	char			*str;
@@ -79,37 +93,55 @@ typedef struct s_token
 	t_token_kind	kind;
 	int				pipe_fd;
 }	t_token;
+/* FILE TYPE DEFINE */
+typedef enum e_file_types
+{
+	TYPE_FIFO = -128,
+	TYPE_CHR,
+	TYPE_DIRECTORY,
+	TYPE_BLOCK,
+	TYPE_REGULAR,
+	TYPE_LINK,
+	TYPE_SOCKET,
+}	t_file_types;
 
-extern char	**envp;
-extern char	**set;
-extern int	stdin_bak;
-extern int	stdout_bak;
+typedef struct s_program_variables
+{
+	char	**envp;
+	char	**set;
+	char	*cwd;
+	int		stdin_bak;
+	int		stdout_bak;
+	int		exit_code;
+}	t_program_variables;
+
+extern t_program_variables		g_vars;
 
 char			*get_value(const char *key, char **envp, char **set);
 char			*get_key(const char *str);
 char			*env_substituter(const char *str, char **envp, char **set);
+char			**change_envp_value(\
+					const char *key, const char *value, char **envp);
 char			*replacer(const char *str);
 t_btree_node	*create_ast_tree_from_string(const char *str);
 int				heredoc(const char *limiter);
 void			run_heredoc(t_btree_node *ast);
 t_status		execute_commands_from_ast(t_btree_node *ast);
-int				what_is_this_file(char *file, struct stat *file_buf);
+int				get_file_type(char *file, struct stat *file_buf);
 int				check_permission(char *absolute_path);
 char			*find_execute_file_path(char *command_name);
 void			free_strings(char **strings);
 void			free_token(void *ptr);
-t_status		check_valid_ast(t_btree_node *ast);\
+t_status		check_valid_ast(t_btree_node *ast);
 t_bool			is_symbol(const char c);
+int				check_builtin(const char *command_name);
+int				get_envp_index(const char *key, char **envp);
+/* BULITIN FUNCTIONS */
+int				builtin_cd(char **arguments, char **envp);
+int				builtin_env(char **envp);
+int				builtin_exit(char **arguments);
+int				builtin_export(char **arguments, char **envp);
+int				builtin_pwd(void);
+int				builtin_unset(char **arguments, char **envp);
 
-# define HEREDOC_FILE_NAME ".heredoc.tmp"
-# define SYMBOLS "$<>|\'\"\\"
-
-/* FILE TYPE DEFINE */
-# define TYPE_FIFO		0
-# define TYPE_CHR		1
-# define TYPE_DIRECTORY	2
-# define TYPE_BLOCK		3
-# define TYPE_REGULAR	4
-# define TYPE_LINK		5
-# define TYPE_SOCKET	6
 #endif
