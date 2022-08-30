@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 17:00:05 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:26:48 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ t_status		check_valid_ast(t_btree_node *ast);
 t_bool			is_symbol(const char c);
 int				check_builtin(const char *command_name);
 int				get_envp_index(const char *key, char **envp);
+void			prompt(void);
 /* BULITIN FUNCTIONS */
 int				builtin_cd(char **arguments, char **envp);
 int				builtin_env(char **envp);

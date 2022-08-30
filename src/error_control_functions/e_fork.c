@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:45:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/21 19:45:20 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:44:40 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ pid_t	e_fork(void)
 	pid_t	pid;
 
 	pid = fork();
+	if (pid == 0)
+	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+	}
 	if (pid == FAILED)
 	{
 		perror(NULL);

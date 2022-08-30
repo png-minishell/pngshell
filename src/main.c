@@ -6,15 +6,15 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:20:38 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 17:03:18 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:56:02 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "executer.h"
-#include <readline/readline.h>
 #include "minishell_definitions.h"
 #include "libft.h"
 
@@ -61,7 +61,6 @@ void	copy_set(char **env)
 	idx_env = 0;
 	while (env[idx_env])
 	{
-		ft_printf("%s\n", env[idx_env]);
 		g_vars.set[idx_env] = ft_strdup(env[idx_env]);
 		++idx_env;
 	}
@@ -82,9 +81,6 @@ void	init_g_vars(char **env)
 
 int	main(int argc, char **argv, char **env)
 {
-	char			*user_cmd;
-	t_btree_node	*ast;
-
 	if (argc != 1)
 	{
 		printf("%s", argv[0]);
@@ -92,23 +88,5 @@ int	main(int argc, char **argv, char **env)
 	}
 	init_g_vars(env);
 	print_main_page();
-	while (1)
-	{
-		user_cmd = readline("\033[34m shell$ \033[0m");
-		if (user_cmd[0] == 0)
-		{
-			free(user_cmd);
-			continue ;
-		}
-		ast = create_ast_tree_from_string(user_cmd);
-		run_heredoc(ast);
-		if (check_valid_ast(ast) == SUCCESS)
-			execute_commands_from_ast(ast);
-		else
-			ft_putendl_fd("shell : syntax error", STDERR_FILENO);
-		add_history(user_cmd);
-		change_envp_value("?", ft_itoa(g_vars.exit_code), g_vars.envp);
-		bst_clear_tree(ast, free_token);
-		free(user_cmd);
-	}
+	prompt();
 }

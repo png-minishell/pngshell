@@ -6,7 +6,7 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/30 15:44:45 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/30 17:37:32 by mingylee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,12 @@ BUITIN_DIR = ./builtin_programs
 ECHO_DIR = $(BUITIN_DIR)/echo/
 
 LIB_FLAG = -L $(LFT_DIR) -lft\
+		   -L/Users/mingylee/goinfre/.brew/opt/readline/lib\
 		   -lreadline
 
 INC_FLAG = -I$(INC_DIR)\
 		   -I$(LFT_DIR)/include\
+		   -I/Users/mingylee/goinfre/.brew/opt/readline/include
 
 SRC_FILES = $(addprefix $(SRC_DIR),\
 			binary_tree/bst_clear_tree.c\
@@ -78,6 +80,7 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			utils/free_token.c\
 			utils/is_symbol.c\
 			utils/change_envp_value.c\
+			prompt/prompt.c\
 			builtin_function/builtin_cd.c\
 			builtin_function/builtin_env.c\
 			builtin_function/builtin_exit.c\
