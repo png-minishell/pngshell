@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:20:38 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 17:56:02 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:30:11 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	init_g_vars(char **env)
 	g_vars.stdin_bak = dup(STDIN_FILENO);
 	g_vars.stdout_bak = dup(STDOUT_FILENO);
 	g_vars.exit_code = 0;
-	g_vars.cwd = ft_strdup(getcwd(NULL, 0));
+	g_vars.cwd = getcwd(NULL, 0);
 }
 
 int	main(int argc, char **argv, char **env)

@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:00:59 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 20:21:27 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:39:52 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	unset_envp(char *argument, char **envp)
 
 	key = get_key(argument);
 	idx_envp = get_envp_index(key, envp);
+	free(envp[idx_envp]);
 	free(key);
 	if (idx_envp == -1)
 		return ;

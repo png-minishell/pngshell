@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   e_fork.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:45:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 17:44:40 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/30 20:00:54 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ pid_t	e_fork(void)
 	pid_t	pid;
 
 	pid = fork();
-	if (pid == 0)
-	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
-	}
 	if (pid == FAILED)
 	{
 		perror(NULL);

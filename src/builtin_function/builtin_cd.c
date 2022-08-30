@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:02:20 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/30 15:49:54 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:38:06 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@
 #include "minishell_definitions.h"
 #include "libft.h"
 
+static void	cd_home(char **envp)
+{
+	char	*value;
+
+	value = get_value("HOME", envp, g_vars.set);
+	chdir(value);
+	free(value);
+}
+
 int	builtin_cd(char **arguments, char **envp)
 {
 	char		*now_dir;
@@ -27,7 +36,7 @@ int	builtin_cd(char **arguments, char **envp)
 	now_dir = getcwd(NULL, 0);
 	if (arguments[1] == NULL)
 	{
-		chdir(get_value("HOME", envp, g_vars.set));
+		cd_home(envp);
 		return (SUCCESS);
 	}
 	if (get_file_type(arguments[1], &buf) != TYPE_CHR \
@@ -39,8 +48,7 @@ int	builtin_cd(char **arguments, char **envp)
 		return (errno);
 	}
 	change_envp_value("PWD", arguments[1], envp);
-	if (get_value("OLD_PWD", envp, g_vars.set))
-		change_envp_value("OLD_PWD", now_dir, envp);
+	change_envp_value("OLD_PWD", now_dir, envp);
 	free(now_dir);
 	if (!chdir(arguments[1]))
 		return (errno);

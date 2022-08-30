@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 19:38:29 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 15:56:17 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:23:43 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ char	*get_key(const char *str)
 	index = 1;
 	while (str[index]
 		&& !ft_isspace(str[index])
-		&& !is_symbol(str[index]))
+		&& str[index] != '=')
 	{
 		++index;
 	}
-	return (ft_substr(str + 1, 0, index - 1));
+	return (ft_substr(str + 1, 0, index));
 }

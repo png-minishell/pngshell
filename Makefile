@@ -6,13 +6,13 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/30 17:37:32 by mingylee         ###   ########.fr        #
+#    Updated: 2022/08/30 19:28:43 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3# -fsanitize=address
 
 NAME = minishell
 
@@ -27,12 +27,12 @@ BUITIN_DIR = ./builtin_programs
 ECHO_DIR = $(BUITIN_DIR)/echo/
 
 LIB_FLAG = -L $(LFT_DIR) -lft\
-		   -L/Users/mingylee/goinfre/.brew/opt/readline/lib\
+		   -L$(HOME)/.brew/opt/readline/lib\
 		   -lreadline
 
 INC_FLAG = -I$(INC_DIR)\
 		   -I$(LFT_DIR)/include\
-		   -I/Users/mingylee/goinfre/.brew/opt/readline/include
+		   -I$(HOME)/.brew/opt/readline/include
 
 SRC_FILES = $(addprefix $(SRC_DIR),\
 			binary_tree/bst_clear_tree.c\
