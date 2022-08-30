@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:15:22 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/30 20:16:20 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 21:52:06 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,6 @@ static void	get_last_argument(char *user_input)
 	free_strings(splitted_string);
 }
 
-void	sigint_handler(int signum)
-{
-	(void)signum;
-	write(1, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-}
-
 static void	change_under_bar(void)
 {
 	char	*exit_code;
@@ -60,6 +51,17 @@ static void	set_signal(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
+static void	check_and_execute_command(t_btree_node *ast)
+{
+	if (check_valid_ast(ast) == SUCCESS)
+	{
+		run_heredoc(ast);
+		execute_commands_from_ast(ast);
+	}
+	else
+		ft_putendl_fd("shell : syntax error", STDERR_FILENO);
+}
+
 void	prompt(void)
 {
 	char			*user_cmd;
@@ -69,17 +71,15 @@ void	prompt(void)
 	while (1)
 	{
 		user_cmd = readline("\033[34m shell$ \033[0m");
+		if (!user_cmd)
+			return ;
 		if (user_cmd[0] == 0)
 		{
 			free(user_cmd);
 			continue ;
 		}
 		ast = create_ast_tree_from_string(user_cmd);
-		run_heredoc(ast);
-		if (check_valid_ast(ast) == SUCCESS)
-			execute_commands_from_ast(ast);
-		else
-			ft_putendl_fd("shell : syntax error", STDERR_FILENO);
+		check_and_execute_command(ast);
 		add_history(user_cmd);
 		change_under_bar();
 		bst_clear_tree(ast, free_token);

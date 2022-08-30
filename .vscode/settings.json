@@ -6,6 +6,7 @@
         "minishell_definitions.h": "c",
         "chrono": "c",
         "bitset": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "termios.h": "c"
     }
 }

@@ -6,13 +6,13 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/30 19:28:43 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/30 21:52:45 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g3# -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 NAME = minishell
 
@@ -79,8 +79,10 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			utils/free_strings.c\
 			utils/free_token.c\
 			utils/is_symbol.c\
+			utils/sigint_handler.c\
 			utils/change_envp_value.c\
 			prompt/prompt.c\
+			prompt/print_main_page.c\
 			builtin_function/builtin_cd.c\
 			builtin_function/builtin_env.c\
 			builtin_function/builtin_exit.c\
