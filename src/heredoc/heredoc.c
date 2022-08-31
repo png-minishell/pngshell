@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:09:10 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 18:53:40 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:44:17 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int	heredoc(const char *limiter)
 	write_list(fds[1], head);
 	ft_lstclear(&head, free);
 	close(fds[1]);
+	free(line);
 	return (fds[0]);
 }

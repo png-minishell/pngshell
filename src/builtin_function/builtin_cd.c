@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:02:20 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/30 21:30:46 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:36:54 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	put_err(char *err)
 	ft_putendl_fd(err, 2);
 }
 
-static int	run_cd(char **arguments, char **envp, char *now_dir)
+static int	run_cd(char **arguments, char **envp)
 {
 	struct stat	buf;
 
@@ -73,7 +73,6 @@ static int	run_cd(char **arguments, char **envp, char *now_dir)
 		&& get_file_type(arguments[1], &buf) != TYPE_DIRECTORY)
 	{
 		put_err(arguments[1]);
-		free(now_dir);
 		return (errno);
 	}
 	return (-1);
@@ -85,9 +84,12 @@ int	builtin_cd(char **arguments, char **envp)
 	int		status;
 
 	now_dir = getcwd(NULL, 0);
-	status = run_cd(arguments, envp, now_dir);
+	status = run_cd(arguments, envp);
 	if (status != -1)
+	{
+		free(now_dir);
 		return (status);
+	}
 	change_envp_value("PWD", arguments[1], envp);
 	change_envp_value("OLDPWD", now_dir, envp);
 	free(now_dir);
