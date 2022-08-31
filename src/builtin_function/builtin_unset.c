@@ -6,23 +6,25 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:00:59 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 20:21:27 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 21:30:13 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "minishell_definitions.h"
+#include "libft.h"
 
 void	unset_envp(char *argument, char **envp)
 {
 	int		idx_envp;
 	char	*key;
 
-	key = get_key(argument);
+	key = ft_substr(argument, 0, ft_strchr(argument, '=') - argument);
 	idx_envp = get_envp_index(key, envp);
 	free(key);
-	if (idx_envp == -1)
+	if (envp[idx_envp] == NULL)
 		return ;
+	free(envp[idx_envp]);
 	while (envp[idx_envp])
 	{
 		envp[idx_envp] = envp[idx_envp + 1];
@@ -40,6 +42,7 @@ int	builtin_unset(char **arguments, char **envp)
 	while (arguments[idx_arg])
 	{
 		unset_envp(arguments[idx_arg], envp);
+		unset_envp(arguments[idx_arg], g_vars.set);
 		idx_arg++;
 	}
 	return (SUCCESS);

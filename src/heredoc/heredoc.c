@@ -6,13 +6,14 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:09:10 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/24 19:29:07 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:53:40 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdio.h>
 #include <readline/readline.h>
 #include "error_control_functions.h"
 #include "minishell_definitions.h"

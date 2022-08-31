@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:12:28 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/30 15:38:52 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:47:26 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,31 @@ static int	is_digit_only(char *str)
 	return (TRUE);
 }
 
+static void	put_err(char *err)
+{
+	ft_putstr_fd("shell: exit: ", 2);
+	ft_putstr_fd(err, 2);
+	ft_putendl_fd(": numeric argument required", 2);
+}
+
 int	builtin_exit(char **arguments)
 {
-	int	idx_arg;
 	int	atoi_value;
 
 	if (arguments[1] == NULL)
-		exit(1);
-	if (!is_digit_only(arguments[1]))
+		atoi_value = 1;
+	else if (!is_digit_only(arguments[1]))
 	{
-		ft_putstr_fd("shell: exit: ", 2);
-		ft_putstr_fd(arguments[1], 2);
-		ft_putendl_fd(": numeric argument required", 2);
+		put_err(arguments[1]);
 		exit(255);
 	}
-	idx_arg = 1;
-	while (arguments[idx_arg])
-	{
-		atoi_value = ft_atoi(arguments[idx_arg]);
-		idx_arg++;
-	}
-	if (idx_arg > 1)
+	if (*(arguments + 1) != NULL)
 	{
 		ft_putendl_fd("shell: exit: too many arguments", 2);
 		return (FAILED);
 	}
+	while (*arguments)
+		atoi_value = ft_atoi(*arguments++);
+	ft_putendl_fd("EXIT", 1);
 	exit((unsigned char)atoi_value);
 }

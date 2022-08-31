@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:07:36 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/30 17:02:56 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 21:37:21 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	**get_paths(void)
 	char	*value;
 	char	**path;
 
-	value = get_value("PATH", g_vars.envp, 0);
+	value = get_value("PATH", g_vars.envp, g_vars.set);
 	path = ft_split(value, ':');
 	free(value);
 	return (path);
@@ -75,6 +75,9 @@ char	*find_execute_file_path(char *command_name)
 		return (ft_strdup(command_name));
 	if (ft_strncmp("echo", command_name, -1) == 0)
 		return (ft_strjoin(g_vars.cwd, "/builtin_programs/echo/echo"));
+	if (ft_strncmp("./", command_name, 2) == 0
+		|| ft_strncmp("../", command_name, 3) == 0)
+		return (NULL);
 	command = ft_strjoin("/", command_name);
 	path = get_paths();
 	excute_file = get_excute_file_path(command, path);
@@ -82,7 +85,7 @@ char	*find_execute_file_path(char *command_name)
 	{
 		free(command);
 		free_strings(path);
-		return (0);
+		return (NULL);
 	}
 	return (excute_file);
 }

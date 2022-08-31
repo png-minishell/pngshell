@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:46:16 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 20:21:07 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:26:13 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ void	exporting_envp(char **arguments, char **envp)
 	idx_arg = 1;
 	while (arguments[idx_arg])
 	{
-		key = get_key(arguments[idx_arg]);
-		value = ft_strchr(arguments[idx_arg], '=') + 1;
+		key = ft_substr(\
+			arguments[idx_arg], 0,
+				ft_strchr(\
+				arguments[idx_arg], '=') - arguments[idx_arg]);
+		value = ft_strdup(ft_strchr(arguments[idx_arg], '=') + 1);
 		change_envp_value(key, value, envp);
 		free(key);
 		free(value);

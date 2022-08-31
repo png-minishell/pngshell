@@ -5,6 +5,8 @@
         "error_control_functions.h": "c",
         "minishell_definitions.h": "c",
         "chrono": "c",
-        "bitset": "c"
+        "bitset": "c",
+        "stdlib.h": "c",
+        "termios.h": "c"
     }
 }

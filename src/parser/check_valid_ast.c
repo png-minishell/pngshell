@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:44:57 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 15:30:10 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 20:33:56 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static t_bool	is_needed_child(t_token_kind kind)
 {
 	return (
 		kind == TK_GREATER
+		|| kind == TK_LESS
 		|| kind == TK_PIPE
 		|| kind == TK_DOUBLE_LESS
 		|| kind == TK_DOUBLE_GREATER

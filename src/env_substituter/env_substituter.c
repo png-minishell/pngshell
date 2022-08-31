@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 16:32:46 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 15:31:46 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:28:08 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ char	*env_substituter(const char *str, char **envp, char **set)
 		}
 		else
 			result_string[r_index++] = str[index];
-		++index;
+		if (!str[index++])
+			break ;
 	}
 	result_string[r_index] = 0;
 	return (result_string);

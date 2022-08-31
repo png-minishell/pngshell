@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 17:00:05 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 21:51:50 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # define FAILED -1
 # define SUCCESS 0
 
-typedef int	t_status;
+typedef int					t_status;
 
 # define FALSE 0
 # define TRUE 1
 
-typedef int	t_bool;
+typedef int					t_bool;
 
 typedef enum e_token_type
 {
@@ -115,7 +115,7 @@ typedef struct s_program_variables
 	int		exit_code;
 }	t_program_variables;
 
-extern t_program_variables		g_vars;
+extern t_program_variables	g_vars;
 
 char			*get_value(const char *key, char **envp, char **set);
 char			*get_key(const char *str);
@@ -136,6 +136,8 @@ t_status		check_valid_ast(t_btree_node *ast);
 t_bool			is_symbol(const char c);
 int				check_builtin(const char *command_name);
 int				get_envp_index(const char *key, char **envp);
+void			prompt(void);
+void			print_main_page(void);
 /* BULITIN FUNCTIONS */
 int				builtin_cd(char **arguments, char **envp);
 int				builtin_env(char **envp);
@@ -143,5 +145,6 @@ int				builtin_exit(char **arguments);
 int				builtin_export(char **arguments, char **envp);
 int				builtin_pwd(void);
 int				builtin_unset(char **arguments, char **envp);
+void			sigint_handler(int signum);
 
 #endif

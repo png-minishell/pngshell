@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 21:02:54 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/25 17:19:15 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 20:25:40 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <errno.h>
 #include <string.h>
 #include <stdio.h>
+#include <readline/history.h>
+#include <readline/readline.h>
 #include "error_control_functions.h"
 #include "executer.h"
 #include "libft.h"
@@ -60,6 +62,7 @@ void	explore_tree_and_execute_command(\
 		pid[index] = build_pipe_and_fork(index, pipelines);
 		if (pid[index] == 0)
 		{
+			rl_catch_signals = 1;
 			set_pipe(index, number_of_process, pipelines);
 			analyze_and_execute_command(left_leaf);
 			exit(errno);
