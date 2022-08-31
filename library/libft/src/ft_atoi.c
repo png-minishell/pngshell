@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sungjpar <sungjpar@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 21:07:18 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/04/15 12:05:37 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 19:53:58 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	get_res(int res, long long checker, int sign)
 /* Function		:	ft_atoi
  * Description	:	 convert the initial portion of the string pointed
  * 					to by str to int respresntation
- * Param		
+ * Param
  * 			str	:	string to convert
  * Return Value	:	!0 	: converted number
  * 					-1	: can not convert( < LL_MIN) or number is -1
@@ -72,7 +72,7 @@ int	ft_atoi(const char *str)
 		++idx_str;
 	sign = get_sign(str[idx_str]);
 	while (issign(str[idx_str]))
-			++idx_str;
+		++idx_str;
 	while (ft_isdigit(str[idx_str]))
 	{
 		res = res * 10 + sign * (str[idx_str] - '0');

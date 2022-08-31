@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_env.c                                      :+:      :+:    :+:   */
+/*   has_space.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/29 18:10:35 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/31 21:57:42 by sungjpar         ###   ########.fr       */
+/*   Created: 2022/08/31 20:16:22 by sungjpar          #+#    #+#             */
+/*   Updated: 2022/08/31 20:20:19 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <errno.h>
 #include "minishell_definitions.h"
+#include "libft.h"
 
-int	builtin_env(char **envp)
+t_bool	has_space(const char *str)
 {
-	int	idx_envp;
-
-	idx_envp = 0;
-	while (envp[idx_envp])
+	while (*str)
 	{
-		printf("%s\n", envp[idx_envp]);
-		idx_envp++;
+		if (ft_isspace(*str))
+			return (TRUE);
+		++str;
 	}
-	errno = 0;
-	return (SUCCESS);
+	return (FALSE);
 }

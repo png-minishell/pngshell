@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mingylee <mingylee@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:41:45 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/29 18:57:02 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:49:46 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
 #include "minishell_definitions.h"
 
 int	builtin_pwd(void)
@@ -26,5 +27,6 @@ int	builtin_pwd(void)
 		free(buf);
 		return (SUCCESS);
 	}
+	errno = 1;
 	return (FAILED);
 }

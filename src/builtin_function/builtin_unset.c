@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 18:00:59 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/30 21:30:13 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:50:39 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	builtin_unset(char **arguments, char **envp)
 
 	idx_arg = 1;
 	if (arguments[1] == 0)
-		return (FAILED);
+		return (SUCCESS);
 	while (arguments[idx_arg])
 	{
 		unset_envp(arguments[idx_arg], envp);

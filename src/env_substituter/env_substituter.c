@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 16:32:46 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 19:28:08 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:11:43 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,10 @@ char	*env_substituter(const char *str, char **envp, char **set)
 	while (str[index])
 	{
 		if (str[index] == '$'
-			&& str[index + 1] && !is_symbol(str[index + 1])
+			&& str[index + 1]
+			&& !is_symbol(str[index + 1])
 			&& (!index || str[index - 1] != '\\'))
-		{
 			index += replace_env(str + index, result_string, &r_index);
-		}
 		else
 			result_string[r_index++] = str[index];
 		if (!str[index++])

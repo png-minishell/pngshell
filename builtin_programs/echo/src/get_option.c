@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:13:01 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 15:36:43 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 19:38:01 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,24 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 t_option	get_option(int argc, char *argv[])
 {
+	size_t	idx;
+
 	if (argc == 1)
 		return (DEFAULT);
 	else
 	{
+		idx = 1;
 		if (ft_strncmp("-n", argv[1], 2) == 0)
+		{
+			idx = 1;
+			while (argv[1][idx])
+			{
+				if (argv[1][idx] != 'n')
+					return (DEFAULT);
+				++idx;
+			}
 			return (N_MODE);
+		}
 		else
 			return (DEFAULT);
 	}

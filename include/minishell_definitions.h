@@ -6,13 +6,14 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 18:27:21 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 21:51:50 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 20:16:38 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_DEFINITIONS_H
 # define MINISHELL_DEFINITIONS_H
 
+# include <stddef.h>
 # include <sys/stat.h>
 # include "binary_tree.h"
 
@@ -145,6 +146,9 @@ int				builtin_exit(char **arguments);
 int				builtin_export(char **arguments, char **envp);
 int				builtin_pwd(void);
 int				builtin_unset(char **arguments, char **envp);
-void			sigint_handler(int signum);
 
+void			sigint_handler(int signum);
+void			child_sig_handler(int signum);
+size_t			get_number_of_arguments(t_btree_node *cmd_node);
+t_bool			has_space(const char *str);
 #endif

@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 23:17:40 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/24 20:02:56 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:27:19 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ size_t	skip_word(const char *str, size_t start_index)
 
 	result_index = start_index;
 	while (str[result_index]
-		&& !is_symbol(str[result_index]) && !ft_isspace(str[result_index]))
+		&& (!is_symbol(str[result_index]) || str[result_index] == '$')
+		&& !ft_isspace(str[result_index]))
 	{
 		++result_index;
 	}

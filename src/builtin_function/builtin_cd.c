@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:02:20 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/31 12:36:54 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 22:02:01 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	cd_home(char **envp)
 	if (value[0] == 0)
 	{
 		ft_putendl_fd("shell: cd: HOME not set", 2);
+		errno = 1;
 		free(value);
 		return ;
 	}
@@ -39,9 +40,11 @@ static void	cd_oldpwd(char **envp)
 	char	*value;
 
 	value = get_value("OLDPWD", envp, g_vars.set);
-	if (!value)
+	if (value[0] == 0)
 	{
 		ft_putendl_fd("shell: cd: OLDPWD not set", 2);
+		errno = 1;
+		free(value);
 		return ;
 	}
 	ft_putendl_fd(value, 1);
@@ -51,8 +54,10 @@ static void	cd_oldpwd(char **envp)
 
 static void	put_err(char *err)
 {
-	ft_putstr_fd("shell: cd: no such file or directory:", 2);
-	ft_putendl_fd(err, 2);
+	ft_putstr_fd("shell: cd: ", 2);
+	ft_putstr_fd(err, 2);
+	ft_putendl_fd(": No such file or directory:", 2);
+	errno = 1;
 }
 
 static int	run_cd(char **arguments, char **envp)
@@ -88,7 +93,7 @@ int	builtin_cd(char **arguments, char **envp)
 	if (status != -1)
 	{
 		free(now_dir);
-		return (status);
+		return (errno);
 	}
 	change_envp_value("PWD", arguments[1], envp);
 	change_envp_value("OLDPWD", now_dir, envp);

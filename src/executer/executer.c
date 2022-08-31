@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:08:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/31 12:40:46 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:53:48 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@
 static void	wait_childs(pid_t *pid, size_t number_of_process)
 {
 	size_t	index;
+	int		status;
 
 	index = 0;
 	while (index < number_of_process)
 	{
-		waitpid(pid[index++], &(g_vars.exit_code), 0);
-		g_vars.exit_code >>= 8;
+		waitpid(pid[index++], &(status), 0);
+		if (status > 127 || status == 0)
+			g_vars.exit_code = status >> 8;
+		else
+			g_vars.exit_code = status + 128;
 	}
 }
 

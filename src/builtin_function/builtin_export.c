@@ -6,12 +6,13 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:46:16 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/30 19:26:13 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:57:09 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
 #include "minishell_definitions.h"
 #include "libft.h"
 
@@ -66,10 +67,17 @@ void	exporting_envp(char **arguments, char **envp)
 	idx_arg = 1;
 	while (arguments[idx_arg])
 	{
-		key = ft_substr(\
-			arguments[idx_arg], 0,
-				ft_strchr(\
-				arguments[idx_arg], '=') - arguments[idx_arg]);
+		if (ft_isdigit(arguments[idx_arg][0]))
+		{
+			ft_putstr_fd("shell: export: `", 2);
+			ft_putstr_fd(arguments[idx_arg], 2);
+			ft_putendl_fd("`: not a valid identifier", 2);
+			errno = 1;
+			++idx_arg;
+			continue ;
+		}
+		key = ft_substr(arguments[idx_arg], 0,
+				ft_strchr(arguments[idx_arg], '=') - arguments[idx_arg]);
 		value = ft_strdup(ft_strchr(arguments[idx_arg], '=') + 1);
 		change_envp_value(key, value, envp);
 		free(key);
@@ -86,6 +94,16 @@ int	builtin_export(char **arguments, char **envp)
 		print_envp(envp);
 		return (SUCCESS);
 	}
+	else if (ft_isdigit(arguments[1][0]))
+	{
+		ft_putstr_fd("shell: export: `", 2);
+		ft_putstr_fd(arguments[1], 2);
+		ft_putendl_fd("`: not a valid identifier", 2);
+		errno = 1;
+		return (1);
+	}
+	else if (ft_strchr(arguments[1], '=') == NULL)
+		return (SUCCESS);
 	else
 	{
 		exporting_envp(arguments, envp);

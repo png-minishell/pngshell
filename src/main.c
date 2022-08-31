@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:20:38 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 21:51:11 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:41:21 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	copy_envp(char **env)
 	shell_level_flag = FALSE;
 	while (env[idx_env])
 	{
-		if (ft_strncmp("_=", env[idx_env], 2) == 0)
+		if (ft_strncmp("_=", env[idx_env], 2) == 0
+			|| ft_strncmp("OLDPWD=", env[idx_env], 7) == 0)
 		{
 			++idx_env;
 			continue ;
@@ -87,6 +88,7 @@ void	init_g_vars(char **env)
 	g_vars.stdout_bak = dup(STDOUT_FILENO);
 	g_vars.exit_code = 0;
 	g_vars.cwd = getcwd(NULL, 0);
+	change_envp_value("?", "0", g_vars.envp);
 }
 
 int	main(int argc, char **argv, char **env)

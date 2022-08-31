@@ -6,14 +6,14 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/08/31 13:19:46 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/08/31 20:19:35 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 NAME = minishell
 
@@ -76,6 +76,7 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			env_substituter/env_substituter.c\
 			env_substituter/env_substituter_utils.c\
 			utils/stat_check.c\
+			utils/has_space.c\
 			utils/find_execute_file_path.c\
 			utils/free_strings.c\
 			utils/free_token.c\

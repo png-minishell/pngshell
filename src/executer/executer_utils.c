@@ -6,13 +6,14 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:19:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 20:54:06 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:58:15 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <errno.h>
 #include "binary_tree.h"
 #include "error_control_functions.h"
 #include "executer.h"
@@ -94,4 +95,5 @@ void	execute_builtin_cmd(t_token *token)
 		builtin_exit(token->arguments);
 	else
 		return ;
+	g_vars.exit_code = errno;
 }

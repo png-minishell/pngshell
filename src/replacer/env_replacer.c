@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 18:36:44 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/30 15:41:46 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:20:45 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*get_env_string(const char *str)
 	size_t	idx_str;
 
 	idx_str = 1;
+	while (str[idx_str] == '$')
+		++idx_str;
 	while (str[idx_str]
 		&& !ft_isspace(str[idx_str])
 		&& !is_symbol(str[idx_str]))
@@ -58,10 +60,18 @@ void	env_replacer(\
 
 	env_str = get_env_string(str);
 	env_replaced_str = env_substituter(env_str, g_vars.envp, g_vars.set);
-	tmp = ft_strjoin("\"", env_replaced_str);
-	double_quoted_str = ft_strjoin(tmp, "\"");
+	if (has_space(env_replaced_str))
+	{
+		tmp = ft_strjoin("\"", env_replaced_str);
+		double_quoted_str = ft_strjoin(tmp, "\"");
+	}
+	else
+	{
+		tmp = ft_strdup(env_replaced_str);
+		double_quoted_str = ft_strdup(tmp);
+	}
 	replace_bakslash_and_copy_string(double_quoted_str, res, idx_res);
-	*idx_str += ft_strlen(env_str);
+	*idx_str += ft_strlen(env_str) - 1;
 	free(env_str);
 	free(env_replaced_str);
 	free(double_quoted_str);

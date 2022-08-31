@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 14:01:53 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/24 18:30:45 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:39:53 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ static void	scan_and_replace(\
 			double_quote_replacer(str + idx_str, res, &idx_str, &idx_res);
 		else if (str[idx_str] == '$' && is_quote(str[idx_str + 1]))
 			;
+		else if (str[idx_str] == '$' && str[idx_str + 1] == '$')
+			++idx_str;
 		else if (str[idx_str] == '$' && str[idx_str + 1])
 			env_replacer(str + idx_str, res, &idx_str, &idx_res);
 		else
 			res[idx_res++] = str[idx_str];
-		if (str[idx_str] == 0)
+		if (str[idx_str++] == 0)
 			break ;
-		++idx_str;
 	}
 	res[idx_res] = 0;
 }

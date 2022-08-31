@@ -6,10 +6,12 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:36:01 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/30 20:36:57 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:46:16 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <readline/history.h>
@@ -23,4 +25,11 @@ void	sigint_handler(int signum)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+	g_vars.exit_code = 1;
+}
+
+void	child_sig_handler(int signum)
+{
+	(void)signum;
+	g_vars.exit_code = 130;
 }
