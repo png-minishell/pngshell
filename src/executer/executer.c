@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:08:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/31 18:53:48 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 10:34:47 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_status	execute_commands_from_ast(t_btree_node *ast)
 	const size_t	number_of_process = get_number_of_pipe(ast) + 1;
 	pid_t			*pid;
 
+	signal(SIGQUIT, child_sig_handler);
 	if (number_of_process == 1 && is_builtin_cmd(ast))
 		execute_builtin_cmd(get_left_leaf(ast)->content);
 	else
