@@ -38,25 +38,25 @@ static void	cd_home(char **envp)
 
 static void	cd_oldpwd(char **envp)
 {
-	char	*old_dir_value;
-	char	*current_dir_value;
+	char	*old_dir;
+	char	*current_di;
 
-	old_dir_value = get_value("OLDPWD", envp, g_vars.set);
-	current_dir_value = get_value("PWD", envp, g_vars.set);
+	old_dir = get_value("OLDPWD", envp, g_vars.set);
+	current_dir = get_value("PWD", envp, g_vars.set);
 	if (old_dir_value[0] == 0)
 	{
 		ft_putendl_fd("shell: cd: OLDPWD not set", 2);
 		errno = 1;
-		free(old_dir_value);
-		free(current_dir_value);
+		free(old_dir);
+		free(current_dir);
 		return ;
 	}
-	change_envp_value("PWD", old_dir_value, envp);
-	change_envp_value("OLDPWD", current_dir_value, envp);
-	ft_putendl_fd(old_dir_value, 1);
-	chdir(old_dir_value);
-	free(old_dir_value);
-	free(current_dir_value);
+	change_envp_value("PWD", old_dir, envp);
+	change_envp_value("OLDPWD", current_dir, envp);
+	ft_putendl_fd(old_dir, 1);
+	chdir(old_dir);
+	free(old_dir);
+	free(current_dir);
 }
 
 static void	put_err(char *err)
