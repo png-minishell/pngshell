@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:08:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/09/01 11:33:24 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:36:09 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,5 @@ t_status	execute_commands_from_ast(t_btree_node *ast)
 		signal(SIGINT, sigint_handler);
 		free(pid);
 	}
-	signal(SIGQUIT, SIG_IGN);
 	return (SUCCESS);
 }
