@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:08:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/09/01 11:36:09 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:43:56 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	wait_childs(pid_t *pid, size_t number_of_process)
 		}
 		++index;
 	}
+	if (g_vars.exit_code == 130)
+		ft_printf("\n");
 }
 
 static t_bool	is_builtin_cmd(t_btree_node *ast)
