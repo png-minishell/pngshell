@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:46:16 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/31 21:57:09 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:56:38 by parksungj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ static void	sorting_envp(char **envp)
 {
 	int		idx_cur;
 	int		idx_target;
-	char	**temp_envp;
 
-	temp_envp = envp;
 	idx_cur = 0;
 	while (envp[idx_cur])
 	{
