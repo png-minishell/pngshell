@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:15:22 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/30 21:52:06 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:55:18 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ static void	get_last_argument(char *user_input)
 	size_t	index;
 
 	splitted_string = ft_split(user_input, ' ');
+	if (splitted_string[0] == NULL)
+	{
+		free_strings(splitted_string);
+		change_envp_value("_", user_input, g_vars.envp);
+		return ;
+	}
 	index = 0;
 	while (splitted_string[index])
 		++index;
