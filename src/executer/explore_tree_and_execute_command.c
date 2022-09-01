@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 21:02:54 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/31 16:43:55 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:30:23 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "error_control_functions.h"
 #include "executer.h"
 #include "libft.h"
+#include "minishell_definitions.h"
 
 static void	close_unused_pipe(\
 	int no_cmd, int pipelines[2][2])
@@ -46,6 +47,12 @@ static pid_t	build_pipe_and_fork(
 	return (pid);
 }
 
+static void	set_child_signal_and_rl_catch(void)
+{
+	signal(SIGQUIT, child_sig_handler);
+	rl_catch_signals = 1;
+}
+
 void	explore_tree_and_execute_command(\
 	t_btree_node *ast, pid_t *pid, const size_t number_of_process)
 {
@@ -62,7 +69,7 @@ void	explore_tree_and_execute_command(\
 		pid[index] = build_pipe_and_fork(index, pipelines);
 		if (pid[index] == 0)
 		{
-			rl_catch_signals = 1;
+			set_child_signal_and_rl_catch();
 			set_pipe(index, number_of_process, pipelines);
 			analyze_and_execute_command(left_leaf);
 			exit(errno);

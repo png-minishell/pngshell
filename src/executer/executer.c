@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:08:11 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/09/01 10:34:47 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:33:24 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,17 @@ static void	wait_childs(pid_t *pid, size_t number_of_process)
 	index = 0;
 	while (index < number_of_process)
 	{
-		waitpid(pid[index++], &(status), 0);
+		waitpid(pid[index], &(status), 0);
 		if (status > 127 || status == 0)
 			g_vars.exit_code = status >> 8;
 		else
 			g_vars.exit_code = status + 128;
+		if (g_vars.exit_code == 131)
+		{
+			ft_printf("%d: ", pid[index]);
+			ft_printf("QUIT\n");
+		}
+		++index;
 	}
 }
 
@@ -50,7 +56,6 @@ t_status	execute_commands_from_ast(t_btree_node *ast)
 	const size_t	number_of_process = get_number_of_pipe(ast) + 1;
 	pid_t			*pid;
 
-	signal(SIGQUIT, child_sig_handler);
 	if (number_of_process == 1 && is_builtin_cmd(ast))
 		execute_builtin_cmd(get_left_leaf(ast)->content);
 	else
@@ -62,5 +67,6 @@ t_status	execute_commands_from_ast(t_btree_node *ast)
 		signal(SIGINT, sigint_handler);
 		free(pid);
 	}
+	signal(SIGQUIT, SIG_IGN);
 	return (SUCCESS);
 }

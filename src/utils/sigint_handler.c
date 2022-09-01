@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:36:01 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/09/01 10:27:04 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:27:17 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	sigint_handler(int signum)
 
 void	child_sig_handler(int signum)
 {
-	if (signum == SIGQUIT)
-		g_vars.exit_code = 3;
+	(void)signum;
 	g_vars.exit_code = 130;
 }
