@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:23:46 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/31 19:59:30 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 17:33:56 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ t_token_status	get_status(\
 	if (prev_status == ST_DOUBLE_GREATER || prev_status == ST_DOUBLE_LESS
 		|| prev_status == ST_GREATER || prev_status == ST_LESS)
 		return (ST_FILE_PATH);
-	if (prev_status == ST_CMD || prev_status == ST_ARG)
+	if (prev_status == ST_CMD || prev_status == ST_ARG
+		|| prev_status == ST_DOUBLE_QUOTE || prev_status == ST_SINGLE_QUOTE)
 		return (ST_ARG);
 	return (ST_CMD);
 }

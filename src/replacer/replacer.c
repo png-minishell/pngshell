@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 14:01:53 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/31 21:39:53 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 19:03:18 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,34 @@
 static t_bool	is_quote(const char c)
 {
 	return (c == '\'' || c == '"');
+}
+
+static char	*replace_double_double_quote(const char *str)
+{
+	char	*result;
+	size_t	idx_str;
+	size_t	idx_res;
+
+	idx_str = 0;
+	idx_res = 0;
+	result = e_malloc(sizeof(char) * ft_strlen(str));
+	while (str[idx_str])
+	{
+		if (ft_strncmp(str + idx_str, "\"\"", 2) == 0)
+		{
+			idx_str += 2;
+			continue ;
+		}
+		if (ft_strncmp(str + idx_str, "\\\"", 2) == 0)
+		{
+			result[idx_res++] = str[idx_str++];
+			result[idx_res++] = str[idx_str++];
+			continue ;
+		}
+		result[idx_res++] = str[idx_str++];
+	}
+	result[idx_res] = 0;
+	return (result);
 }
 
 static void	scan_and_replace(\
@@ -56,9 +84,9 @@ char	*replacer(const char *str)
 	char	*result_tmp;
 	char	*result;
 
-	result_tmp = e_malloc(sizeof(char) * (get_replaced_string_size(str)));
-	scan_and_replace(str, result_tmp);
-	result = ft_strdup(result_tmp);
+	result = e_malloc(sizeof(char) * (get_replaced_string_size(str)));
+	result_tmp = replace_double_double_quote(str);
+	scan_and_replace(result_tmp, result);
 	free(result_tmp);
 	return (result);
 }
