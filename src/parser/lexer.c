@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:04:12 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/31 18:37:34 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 16:04:02 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ t_status	tokenize_string(const char *str, t_list **token_list)
 			break ;
 		current_index += pass_operator_index(status);
 	}
+	if (*token_list == NULL)
+		ft_lstadd_back(token_list, \
+				ft_lstnew(get_new_token(ft_strdup(str), ST_ARG)));
 	return (SUCCESS);
 }
