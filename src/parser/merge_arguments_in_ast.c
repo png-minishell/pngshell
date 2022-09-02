@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:11:54 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/25 17:21:11 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:56:41 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,7 @@ char	*double_quote_string_to_word(const char *str)
 	replaced_str = e_malloc(sizeof(char) * (ft_strlen(str) + 1));
 	while (str[idx_str])
 	{
-		if (str[idx_str] == '\\')
-			replaced_str[idx_res] = replace_backslash(str + idx_str, &idx_str);
-		else
-			replaced_str[idx_res] = str[idx_str];
-		++idx_res;
-		if (str[idx_str++] == 0)
-			break ;
+		replaced_str[idx_res++] = str[idx_str++];
 	}
 	replaced_str[idx_res] = 0;
 	return (replaced_str);
