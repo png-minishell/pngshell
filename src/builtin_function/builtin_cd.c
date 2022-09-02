@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:02:20 by mingylee          #+#    #+#             */
-/*   Updated: 2022/09/01 15:40:21 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:05:39 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ static void	cd_home(char **envp)
 static void	cd_oldpwd(char **envp)
 {
 	char	*old_dir;
-	char	*current_di;
+	char	*current_dir;
 
 	old_dir = get_value("OLDPWD", envp, g_vars.set);
 	current_dir = get_value("PWD", envp, g_vars.set);
-	if (old_dir_value[0] == 0)
+	if (old_dir[0] == 0)
 	{
 		ft_putendl_fd("shell: cd: OLDPWD not set", 2);
 		errno = 1;

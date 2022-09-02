@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 23:17:40 by parksungj         #+#    #+#             */
-/*   Updated: 2022/09/02 15:26:40 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:24:54 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,14 @@ size_t	skip_word(const char *str, size_t start_index)
 }
 
 size_t	get_word_end_index(\
-		const char *str, const size_t start_index)
+		const char *str, const size_t start_index, const t_status status)
 {
-	return (skip_word(str, start_index));
+	if (status == ST_LESS || status == ST_GREATER)
+		return (start_index);
+	else if (status == ST_DOUBLE_GREATER || status == ST_DOUBLE_LESS)
+		return (start_index + 1);
+	else if (status == ST_PIPE)
+		return (start_index);
+	else
+		return (skip_word(str, start_index));
 }

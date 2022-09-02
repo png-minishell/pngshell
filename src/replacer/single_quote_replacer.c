@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:05:33 by parksungj         #+#    #+#             */
-/*   Updated: 2022/09/02 14:57:19 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:52:02 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*get_single_quote_string(const char *str)
 	idx_res = 0;
 	while (str[idx_str] && str[idx_str] != '\'')
 	{
-		if (ft_isspace(str[idx_str]) || is_symbol(str[idx_str]))
+		if (ft_isspace(str[idx_str]) || ft_isinset(str[idx_str], "$<>|\\"))
 		{
 			result[idx_res++] = '\\';
 		}

@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 17:39:22 by parksungj         #+#    #+#             */
-/*   Updated: 2022/09/02 15:01:44 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:42:35 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,20 @@ static char	*get_double_quote_string(const char *str)
 	result = e_malloc(sizeof(char) * ft_strlen(str) * 2);
 	idx_str = 1;
 	idx_res = 0;
-	while (str[idx_str]
-		&& ((str[idx_str] != '"') || (idx_str && str[idx_str - 1] == '\\')))
+	while (str[idx_str] && str[idx_str] != '"')
 	{
-		if (str[idx_str] == '\\')
+		if (str[idx_str] == '\\'
+			|| ft_isspace(str[idx_str]) || is_symbol(str[idx_str]))
+			result[idx_res++] = '\\';
+		if (ft_strncmp("\\\\", str + idx_str, 2) == 0 && idx_str++)
+			result[idx_res++] = str[idx_str++];
+		else if (str[idx_str] == '\\')
 		{
 			result[idx_res++] = replace_backslash(str + idx_str, &idx_str);
 			++idx_str;
-			continue ;
 		}
-		if (ft_isspace(str[idx_str]) || is_symbol(str[idx_str]))
-			result[idx_res++] = '\\';
-		result[idx_res++] = str[idx_str++];
+		else
+			result[idx_res++] = str[idx_str++];
 	}
 	result[idx_res] = 0;
 	return (result);

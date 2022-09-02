@@ -6,14 +6,14 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/09/02 16:01:00 by sungjpar         ###   ########.fr        #
+#    Updated: 2022/09/02 18:37:59 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = minishell
 

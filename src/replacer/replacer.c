@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 14:01:53 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/09/02 15:55:16 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:29:14 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ static t_bool	is_quote(const char c)
 	return (c == '\'' || c == '"');
 }
 
+static void	single_quote_case(\
+		const char *str, char *res, size_t *idx_str, size_t *idx_res)
+{
+	res[(*idx_res)++] = str[(*idx_str)++];
+	while (str[*idx_str] && str[*idx_str] != '\'')
+	{
+		res[(*idx_res)++] = str[(*idx_str)];
+		++(*idx_str);
+	}
+	res[(*idx_res)++] = str[(*idx_str)];
+}
+
 static char	*replace_env(const char *str)
 {
 	char	*res;
@@ -32,8 +44,8 @@ static char	*replace_env(const char *str)
 	res = e_malloc(sizeof(char) * get_replaced_string_size(str));
 	while (str[idx_str])
 	{
-		if (str[idx_str] == '\'')
-			single_quote_replacer(str + idx_str, res, &idx_str, &idx_res);
+		if (str[idx_str] == '\'' && idx_str && str[idx_str - 1] != '\\')
+			single_quote_case(str, res, &idx_str, &idx_res);
 		else if (str[idx_str] == '$' && is_quote(str[idx_str + 1]))
 			res[idx_res++] = str[idx_str];
 		else if (str[idx_str] == '$' && str[idx_str + 1] == '$')
@@ -59,9 +71,7 @@ static void	scan_and_replace(\
 	idx_res = 0;
 	while (str[idx_str])
 	{
-		if (str[idx_str] == '\\' && !is_symbol(str[idx_str + 1]))
-			res[idx_res++] = str[++idx_str];
-		else if (str[idx_str] == '\'')
+		if (str[idx_str] == '\'')
 			single_quote_replacer(str + idx_str, res, &idx_str, &idx_res);
 		else if (str[idx_str] == '"')
 			double_quote_replacer(str + idx_str, res, &idx_str, &idx_res);
