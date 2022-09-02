@@ -6,7 +6,7 @@
 #    By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 00:54:23 by sungjpar          #+#    #+#              #
-#    Updated: 2022/09/01 11:07:25 by mingylee         ###   ########.fr        #
+#    Updated: 2022/09/02 18:37:59 by sungjpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,7 @@ SRC_FILES = $(addprefix $(SRC_DIR),\
 			builtin_function/builtin_env.c\
 			builtin_function/builtin_exit.c\
 			builtin_function/builtin_export.c\
+			builtin_function/builtin_export_utils.c\
 			builtin_function/builtin_pwd.c\
 			builtin_function/builtin_unset.c\
 			main.c\

@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:04:12 by parksungj         #+#    #+#             */
-/*   Updated: 2022/08/31 18:37:34 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:30:52 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,34 @@ t_token	*lexer(const char *str)
 	return (result);
 }
 
+static char	*remove_backslash(char *word)
+{
+	char	*new_word;
+	size_t	idx_word;
+	size_t	idx_new_word;
+
+	new_word = e_malloc(sizeof(char) * ft_strlen(word) + 1);
+	idx_word = 0;
+	idx_new_word = 0;
+	while (word[idx_word])
+	{
+		if (ft_strncmp("\\\\", word + idx_word, 2) == 0)
+		{
+			new_word[idx_new_word++] = '\\';
+			idx_word += 2;
+			continue ;
+		}
+		else if (word[idx_word] == '\\')
+			++idx_word;
+		if (word[idx_word] == 0)
+			break ;
+		new_word[idx_new_word++] = word[idx_word++];
+	}
+	new_word[idx_new_word] = 0;
+	free(word);
+	return (new_word);
+}
+
 t_status	tokenize_string(const char *str, t_list **token_list)
 {
 	size_t				start_index;
@@ -59,13 +87,16 @@ t_status	tokenize_string(const char *str, t_list **token_list)
 		if (str[start_index] == '\0')
 			break ;
 		status = get_status(status, str, start_index);
-		start_index += (status == ST_SINGLE_QUOTE || status == ST_DOUBLE_QUOTE);
 		current_index = get_word_end_index(str, start_index, status);
 		word = ft_substr(str, start_index, current_index - start_index);
+		word = remove_backslash(word);
 		ft_lstadd_back(token_list, ft_lstnew(get_new_token(word, status)));
 		if (str[current_index] == '\0')
 			break ;
 		current_index += pass_operator_index(status);
 	}
+	if (*token_list == NULL)
+		ft_lstadd_back(token_list, \
+				ft_lstnew(get_new_token(ft_strdup(str), ST_ARG)));
 	return (SUCCESS);
 }
