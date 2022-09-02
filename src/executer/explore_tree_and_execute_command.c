@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 21:02:54 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/09/01 11:30:23 by mingylee         ###   ########.fr       */
+/*   Updated: 2022/09/01 16:02:19 by mingylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	explore_tree_and_execute_command(\
 			set_child_signal_and_rl_catch();
 			set_pipe(index, number_of_process, pipelines);
 			analyze_and_execute_command(left_leaf);
-			exit(errno);
+			exit(0);
 		}
 		if (root->right_child)
 			left_leaf = get_left_leaf(root->right_child);

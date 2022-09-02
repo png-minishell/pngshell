@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:07:36 by mingylee          #+#    #+#             */
-/*   Updated: 2022/08/31 19:56:44 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:58:01 by parksungj        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,10 @@ char	**get_paths(void)
 
 char	*find_execute_file_path(char *command_name)
 {
-	int		path_index;
 	char	**path;
 	char	*command;
 	char	*excute_file;
 
-	path_index = 0;
 	if (check_permission(command_name))
 		return (ft_strdup(command_name));
 	if (ft_strncmp("echo", command_name, -1) == 0)
