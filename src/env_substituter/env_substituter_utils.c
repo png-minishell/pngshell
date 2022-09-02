@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 19:38:29 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/08/31 16:34:40 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:00:10 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,17 @@ static char	*find_key_and_get_value(const char *key, char **envp)
 	size_t	index;
 
 	index = 0;
+	if (key == NULL || envp == NULL)
+		return (NULL);
 	while (envp[index])
 	{
 		strs = ft_split(envp[index], '=');
-		if (ft_strncmp(strs[0], key, -1) == 0)
+		if (strs[0] == NULL)
+		{
+			++index;
+			continue ;
+		}
+		if (ft_strncmp(strs[0], key, -1) == 0 && strs[1])
 		{
 			value = ft_strdup(strs[1]);
 			free_strings(strs);

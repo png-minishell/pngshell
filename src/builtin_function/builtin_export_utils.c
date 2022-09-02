@@ -6,7 +6,7 @@
 /*   By: sungjpar <sungjpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 15:26:49 by sungjpar          #+#    #+#             */
-/*   Updated: 2022/09/01 19:07:19 by sungjpar         ###   ########.fr       */
+/*   Updated: 2022/09/02 13:38:48 by sungjpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*get_value_from_string(char **args, int *idx_arg)
 	else if (args[*idx_arg + 1] && !ft_strchr(args[*idx_arg + 1], '='))
 		value = ft_strdup(args[++(*idx_arg)]);
 	else
-		return (NULL);
+		value = ft_strdup("");
 	return (value);
 }
 
